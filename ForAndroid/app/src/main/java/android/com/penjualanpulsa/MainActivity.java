@@ -17,4 +17,6 @@ public class MainActivity extends AppCompatActivity {
         Intent belipulsa = new Intent(MainActivity.this, android.com.penjualanpulsa.belipulsa.class );
         startActivity(belipulsa);
     }
+
+
 }
