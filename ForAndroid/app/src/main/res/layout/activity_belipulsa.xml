@@ -4,7 +4,8 @@
     android:layout_height="match_parent" android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:paddingBottom="16dp" tools:context=".GetData.MainActivity">
+    android:paddingBottom="16dp"
+    tools:context=".belipulsa">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +15,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextName" />
+        android:id="@+id/editTextName"
+        android:inputType="number"/>
 
     <TextView
         android:layout_width="wrap_content"
