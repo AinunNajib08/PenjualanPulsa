@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
-                    <a class="navbar-brand"><h4><b>Promo Lawu Cellular Saat Ini:</b></h4></a>
+                    <a class="navbar-brand"><h4><b>Promo The Hoax Cellular Saat Ini:</b></h4></a>
                     <marquee behavior="scroll" scrollamount="15" direction="left" width="900">
                         <h3><p class="black">[Promo Paket Data] Telkomsel 1GB: 22 Ribu | Telkomsel 2GB: 40 Ribu  |  Telkomsel 6GB: 55 Ribu  |  Telkomsel 11GB: 62 Ribu  |  Indosat 1GB: 15 Ribu  |  Indosat 2GB: 22 Ribu  |  Tri 1GB: 15 Ribu  |  Tri 2GB: 22 Ribu  |  Tri 30GB: 72 Ribu  |  Axis 1GB: 15 Ribu  | Axis 2GB: 22 Ribu  |  Axis 3GB:  32 Ribu</p></h3>
                     </marquee>
@@ -24,7 +24,7 @@
         <div class="container">
             <div class="panel-group">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h4><center>Selamat Datang di Lawu Cellular. :) Silahkan Pilih Jenis Pulsa</center></h4></div>
+                    <div class="panel-heading"><h4><center>Selamat Datang di The Hoax Cellular :) Silahkan Pilih Jenis Pulsa</center></h4></div>
                     <div class="panel-body"></div>
                     <!--Awal nav-tabs-->
                     <div class="container">
