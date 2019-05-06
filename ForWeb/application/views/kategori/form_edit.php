@@ -26,7 +26,7 @@ $this->load->view('template/sidebaradmin');
 <!-- Awal panel -->
 <!-- Awal Coding Data -->
 			<?php
-				echo form_open('kategori/edit');
+				echo form_open('index.php/kategori/edit');
 			?>
 			<input type="hidden" value="<?php echo $record['id_kategori']?>" name="id">
 				<table class="table table-striped">
