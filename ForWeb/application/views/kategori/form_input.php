@@ -26,7 +26,7 @@ $this->load->view('template/sidebaradmin');
 <!-- Awal panel -->
 <!-- Awal Coding Lihat Data -->
 			<?php
-					echo form_open('kategori/post');
+					echo form_open('index.php/kategori/post');
 					?>
 					<table class="table table-striped">
 					    <tr><td width="130">Nama Kategori</td>
