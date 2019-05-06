@@ -27,7 +27,7 @@ class Kategori  extends CI_Controller{
 		if(isset($_POST['submit'])){
 			//proses kategori
 			$this->model_kategori->post();
-			redirect('kategori');
+			redirect('index.php/kategori');
 		}
 		else{
 			$this->load->view('kategori/form_input');
@@ -39,7 +39,7 @@ class Kategori  extends CI_Controller{
 		if(isset($_POST['submit'])){
 			//proses kategori
 			$this->model_kategori->edit();
-			redirect('kategori');
+			redirect('index.php/kategori');
 		}
 		else{
 			$id= $this->uri->segment(3);
