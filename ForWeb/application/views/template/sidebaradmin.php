@@ -23,7 +23,7 @@
               <a href="<?php echo base_url() ?>index.php/" class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
               <a href="<?php echo base_url() ?>transaksi" class="list-group-item"><i class="fa fa-money"></i> Transaksi</a>
               <a href="http://localhost/thehoaxcellular/index.php/pembelian/pembelian" class="list-group-item"><i class="fa fa-cart-plus"></i> Pembelian</a>
-              <a href="<?php echo base_url() ?>kategori" class="list-group-item"><i class="fa fa-folder"></i> Kategori</a>
+              <a href="<?php echo base_url() ?>index.php/kategori" class="list-group-item"><i class="fa fa-folder"></i> Kategori</a>
               <a href="<?php echo base_url() ?>nominal" class="list-group-item"><i class="fa fa-folder"></i> Nominal</a>
               <a href="<?php echo base_url() ?>proveder" class="list-group-item"><i class="fa fa-folder"></i> Provider</a>
               <a href="<?php echo base_url() ?>user"    class="list-group-item"><i class="fa fa-user-secret"></i> User</a>
