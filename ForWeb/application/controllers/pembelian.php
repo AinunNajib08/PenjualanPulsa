@@ -28,7 +28,7 @@ class Pembelian extends CI_Controller {
                  'user_id'    => $this->session->userdata('id_user')
                  );
                  $this->db->insert('transaksi_pembelian',$data);
-                 redirect('pembelian');
+                 redirect('index.php/pembelian');
         } else {
             $this->load->view('pembelian/form_pembelian');
         }
@@ -38,7 +38,7 @@ class Pembelian extends CI_Controller {
         $id= $this->uri->segment(3);
         $this->db->where('id',$id);
         $this->db->delete('transaksi_pembelian');
-        redirect('pembelian');
+        redirect('index.php/pembelian');
     }
     public function pembelian() {
         $this->load->view('pembelian/form_pembelian');
