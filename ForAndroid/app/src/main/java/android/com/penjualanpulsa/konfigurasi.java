@@ -29,6 +29,7 @@ public class konfigurasi {
     public static final String TAG_NAMA = "name";
     public static final String TAG_POSISI = "desg";
     public static final String TAG_GAJIH = "salary";
+    public static final String TAG_STATUS = "status";
 
     //ID karyawan
     //emp itu singkatan dari Employee

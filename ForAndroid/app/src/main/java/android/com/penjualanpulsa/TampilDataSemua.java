@@ -44,10 +44,14 @@ public class TampilDataSemua extends AppCompatActivity implements ListView.OnIte
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(konfigurasi.TAG_ID);
                 String name = jo.getString(konfigurasi.TAG_NAMA);
+                String salary = jo.getString(konfigurasi.TAG_GAJIH);
+                String status = jo.getString(konfigurasi.TAG_STATUS);
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put(konfigurasi.TAG_ID,id);
                 employees.put(konfigurasi.TAG_NAMA,name);
+                employees.put(konfigurasi.TAG_GAJIH, salary);
+                employees.put(konfigurasi.TAG_STATUS, status);
                 list.add(employees);
             }
 
@@ -57,8 +61,8 @@ public class TampilDataSemua extends AppCompatActivity implements ListView.OnIte
 
         ListAdapter adapter = new SimpleAdapter(
                 TampilDataSemua.this, list, R.layout.list_item,
-                new String[]{konfigurasi.TAG_ID,konfigurasi.TAG_NAMA},
-                new int[]{R.id.id, R.id.name});
+                new String[]{konfigurasi.TAG_ID,konfigurasi.TAG_NAMA,konfigurasi.TAG_GAJIH,konfigurasi.TAG_STATUS},
+                new int[]{R.id.id, R.id.name, R.id.salary, R.id.status});
 
         listView.setAdapter(adapter);
     }
