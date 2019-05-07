@@ -7,6 +7,11 @@
     android:paddingBottom="16dp"
     tools:context=".TampilDataSemua">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data Transaksi"
+        android:textSize="20dp"/>
 
     <ListView
         android:layout_width="match_parent"
