@@ -27,10 +27,10 @@ $this->load->view('template/sidebaradmin');
             <!-- Awal Coding Lihat Data -->
             <div class="col-md-4">
                 <?php
-                echo anchor('kategori/post', 'Tambah Kategori', array('class' => 'btn btn-success btn-sm'))
+                echo anchor('index.php/kategori/post', 'Tambah Kategori', array('class' => 'btn btn-success btn-sm'))
                 ?>
             </div>
-            <?php echo form_open('kategori/cari'); ?>
+            <?php echo form_open('index.php/kategori/cari'); ?>
             <div class="col-md-4">
                 <input type="text" name="cari" class="form-control">
             </div>

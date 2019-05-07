@@ -39,7 +39,7 @@ class Nominal extends CI_Controller {
                 'harga_jual' => $harga_jual,
                 'stok' => $stok);
             $this->model_nominal->post($data);
-            redirect('nominal');
+            redirect('index.php/nominal');
         } else {
             $this->load->model('model_kategori');
             $data['kategori'] = $this->model_kategori->tampilkan_data()->result();
@@ -63,7 +63,7 @@ class Nominal extends CI_Controller {
             $data = array('nama_nominal' => $nama, 'nama_kategori' => $kategori, 'nama_proveder' => $proveder,
                 'deskripsi' => $deskripsi, 'hpp' => $hpp, 'jarga_jual' => $harga_jual, 'stok' => $stok);
             $this->model_nominal->edit($data, $id);
-            redirect('nominal');
+            redirect('index.php/nominal');
         } else {
             $id = $this->uri->segment(3);
             $this->load->model('model_kategori');
@@ -78,7 +78,7 @@ class Nominal extends CI_Controller {
     function delete() {
         $id = $this->uri->segment(3);
         $this->model_nominal->delete($id);
-        redirect('nominal');
+        redirect('index.php/nominal');
     }
 
 

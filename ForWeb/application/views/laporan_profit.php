@@ -1,8 +1,8 @@
 <center><p><b>LAPORAN TRANSAKSI PENJUALAN PULSA</b></p></center>
 
-<center><p>LAWU CELLULAR</p></center>
+<center><p>The Hoax Cellular</p></center>
 
-<center><p>29/06/2018</p></center>
+<center><p>01/05/2019</p></center>
 <center>
 <table border="1" cellspacing="0" cellpadding="0" > 
 <tbody>

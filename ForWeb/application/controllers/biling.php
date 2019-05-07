@@ -51,7 +51,7 @@ class Biling extends CI_Controller {
                 'id_provider' => $this->input->post('proveder')
             );
             $this->db->insert('transaksi',$data);
-            redirect('biling');
+            redirect('index.php/biling');
         } else {
 
             $this->load->view('biling/biling');
@@ -69,7 +69,7 @@ class Biling extends CI_Controller {
                 'id_provider' => $this->input->post('proveder')
             );
             $this->db->insert('transaksi',$data);
-            redirect('biling');
+            redirect('index.php/biling');
         } else {
 
             $this->load->view('biling/biling');
@@ -88,7 +88,7 @@ class Biling extends CI_Controller {
                 'id_provider' => $this->input->post('proveder')
             );
             $this->db->insert('transaksi',$data);
-            redirect('biling');
+            redirect('index.php/biling');
         } else {
 
             $this->load->view('biling/biling');

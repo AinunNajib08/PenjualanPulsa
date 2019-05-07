@@ -16,7 +16,7 @@ class Proveder extends CI_Controller {
         if (isset($_POST['submit'])) {
             //proses proveder
             $this->model_proveder->post();
-            redirect('proveder');
+            redirect('index.php/proveder');
         } else {
             $this->load->view('proveder/form_input');
         }
@@ -26,7 +26,7 @@ class Proveder extends CI_Controller {
         if (isset($_POST['submit'])) {
             //proses proveder
             $this->model_proveder->edit();
-            redirect('proveder');
+            redirect('index.php/proveder');
         } else {
             $id = $this->uri->segment(3);
             $data['record'] = $this->model_proveder->get_one($id)->row_array();
@@ -37,7 +37,7 @@ class Proveder extends CI_Controller {
     function delete() {
         $id = $this->uri->segment(3);
         $this->model_proveder->delete($id);
-        redirect('proveder');
+        redirect('index.php/proveder');
     }
 
     public function cari() {

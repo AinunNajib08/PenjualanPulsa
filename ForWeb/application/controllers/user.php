@@ -27,7 +27,7 @@ class User extends CI_Controller {
                                     'password'=>md5($password),
                                     'level'	=>$level);
             $this->db->insert('user',$data);
-            redirect('user');
+            redirect('index.php/user');
         }
         else{
             //$this->load->view('operator/form_input');
@@ -63,7 +63,7 @@ class User extends CI_Controller {
 			 //print_r($data);
 			 $this->db->where('id_user',$id);
 			 $this->db->update('user',$data);
-			 redirect('user');
+			 redirect('index.php/user');
 		}
 		else{
 			$id= $this->uri->segment(3);
@@ -79,7 +79,7 @@ class User extends CI_Controller {
 		$id= $this->uri->segment(3);
 		$this->db->where('id_user',$id);
 		$this->db->delete('user');
-		redirect('user');
+		redirect('index.php/user');
 	}
 
 	/*function level_emum()
