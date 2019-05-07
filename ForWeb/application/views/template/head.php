@@ -35,8 +35,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <div class="navbar-form navbar-right">
-        <a href="<?php echo base_url() ?>transaksi" type="button" class="btn btn-success"><i class="badge"></i>Transaksi</a>
-        <a href="<?php echo site_url('authentication/auth/logout'); ?>" type="submit" class="btn btn-danger"><i class="fa fa-sign-out"></i> Logout</a>
           </div>
       </div>
     </nav>

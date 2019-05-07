@@ -22,7 +22,7 @@ if ($this->session->userdata('level') == "karyawan") {
 ?>
 <!-- Akhir sidebar admin -->
 <?php
-echo form_open('transaksi/add');
+echo form_open('index.php/transaksi/add');
 ?>
 <!-- Awal Dashboard admin -->
 <div class="col-md-9">
@@ -54,7 +54,7 @@ echo form_open('transaksi/add');
                             <input type="text" name="qty" placeholder="QTY" required="" value="1" class="form-control" readonly="">
                         </div>  
                         <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                        <?php echo anchor('transaksi/selesai_belanja', 'Selesai', array('class' => 'btn btn-success')) ?>
+                        <?php echo anchor('index.php/transaksi/selesai_belanja', 'Selesai', array('class' => 'btn btn-success')) ?>
                     </td></tr>
             </table>
             <?php echo form_close(); ?>
@@ -94,7 +94,7 @@ echo form_open('transaksi/add');
                                     <td><?php echo $a=$row->qty-$kurang; ?></td>
                                     <td><?php echo $row->harga_pulsa; ?></td>
                                     <td><?php echo $total=$row->harga_pulsa*$a; ?></td>
-                                    <td><?php echo anchor('transaksi/batal/'.$row->id_transaksi,'CANCEL', array('class' => 'btn btn-danger')) ?></td>
+                                    <td><?php echo anchor('index.php/transaksi/batal/'.$row->id_transaksi,'CANCEL', array('class' => 'btn btn-danger')) ?></td>
                                 </tr>
                                 <?php $no++; ?>
 <?php endforeach; ?>      
@@ -121,7 +121,7 @@ echo form_open('transaksi/add');
         var no_hp = $("#no_hp").val();
         $.ajax({
             type: 'GET',
-            url: '<?php echo base_url() ?>transaksi/form_autocomplit',
+            url: '<?php echo base_url() ?>index.php/transaksi/form_autocomplit',
             data: 'no_hp=' + no_hp,
             success: function (data) {
                 var json = data,

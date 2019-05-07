@@ -26,7 +26,7 @@ $this->load->view('template/sidebaradmin');
 <!-- Awal panel -->
 <!-- Awal Coding Lihat Data -->
 			<?php
-			echo form_open('nominal/edit');
+			echo form_open('index.php/ominal/edit');
 			?>
 			<input type="hidden" name="id" value="<?php echo $record['id_nominal']?>">
 			<table class="table table-striped">
@@ -69,7 +69,7 @@ $this->load->view('template/sidebaradmin');
         				<td><input type="text" class="form-control"  name="harga" value="<?php echo $record['stok']?>" placeholder="Stok">
        					</td></tr>
     <tr><td colspan="2"><button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan</button>
-        <?php echo anchor('nominal','Kembali',array('class'=>'btn btn-primary btn-sm'))?></td></tr>
+        <?php echo anchor('index.php/nominal','Kembali',array('class'=>'btn btn-primary btn-sm'))?></td></tr>
 </table>
 </form>
 <!-- Akhir Coding Lihat Data -->

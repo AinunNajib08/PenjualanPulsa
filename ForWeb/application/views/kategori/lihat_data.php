@@ -48,8 +48,8 @@ $this->load->view('template/sidebaradmin');
                     echo "<tr>
 					            <td width='10'>$no</td>
 					            <td>$r->nama_kategori</td>
-					            <td width='10'>" . anchor('kategori/edit/' . $r->id_kategori, 'Edit',array('class'=>'btn btn-info')) . "</td>
-					            <td width='10'>" . anchor('kategori/delete/' . $r->id_kategori, 'Delete',array('class'=>'btn btn-danger')) . "</td>
+					            <td width='10'>" . anchor('index.php/kategori/edit/' . $r->id_kategori, 'Edit',array('class'=>'btn btn-info')) . "</td>
+					            <td width='10'>" . anchor('index.php/kategori/delete/' . $r->id_kategori, 'Delete',array('class'=>'btn btn-danger')) . "</td>
 					            </tr>";
                     $no++;
                 }
