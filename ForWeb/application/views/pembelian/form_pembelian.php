@@ -32,7 +32,7 @@ if ($this->session->userdata('level') == "karyawan") {
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money"></i> Form Transaksi</h3>
         </div>
-               <?php  echo form_open('pembelian/post') ?>
+               <?php  echo form_open('index.php/pembelian/post') ?>
    
         <div class="panel-body">
             <!-- Awal panel -->
@@ -99,7 +99,7 @@ if ($this->session->userdata('level') == "karyawan") {
                 <td><?php echo $row->qty; ?></td>
                 <td><?php echo $row->harga_pokok; ?></td>
                 <td><?php echo $total=$row->qty*$row->harga_pokok; ?></td>
-                <td><?php echo anchor('pembelian/cancel/'.$row->id,'Cancel', array('class' => 'btn btn-danger')) ?></td>
+                <td><?php echo anchor('index.php/pembelian/cancel/'.$row->id,'Cancel', array('class' => 'btn btn-danger')) ?></td>
                  </tr>
                     <?php $no++; ?>
                 
