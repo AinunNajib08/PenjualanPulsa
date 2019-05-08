@@ -16,6 +16,7 @@ import java.net.URI;
  *
  * @author Ardiyan
  */
+
 public class SmsGatewayClient extends WebSocketClient {
  public SmsGatewayClient(URI serverURI) { super(serverURI); } 
  public void onOpen(ServerHandshake handshakedata) {}
@@ -29,6 +30,31 @@ public interface WebSocketListener {
  void onError();
  void onMessage(String message);
 }
+
+public class SmsGatewayClient extends WebSocketClient {
+ private WebSocketListener listener;
+ public SmsGatewayClient(URI serverURI, WebSocketListener listener) {
+ super(serverURI);
+ this.listener = listener;
+ }
+ 
+ public class AppForm exteds javax.swing.Jframe
+                          implements WebSocketListener {
+}
+
+                          
+ public void onOpen(ServerHandshake handshakedata) {
+ listener.onOpen(); }
+ public void onMessage(String message) {
+ listener.onMessage(message);
+ }
+ public void onClose(int code, String reason, boolean remote) {
+ listener.onClose();
+ }
+ public void onError(Exception ex) { listener.onError(); }
+}
+
+ 
 public class LayoutPenjualanPulsa extends javax.swing.JFrame {
 
     /**
