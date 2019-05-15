@@ -155,6 +155,12 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel4.setText("No Telepon : ");
 
+        jTextFieldNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNoKeyTyped(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel5.setText("Pesan : ");
 
@@ -288,6 +294,17 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
         
     }//GEN-LAST:event_jLabel4MnMouseClicked
+
+    private void jTextFieldNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNoKeyTyped
+
+        char c=evt.getKeyChar();
+       if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE))
+       {
+           getToolkit().beep();
+           evt.consume();
+       }
+        
+    }//GEN-LAST:event_jTextFieldNoKeyTyped
 
     /**
      * @param args the command line arguments
