@@ -16,13 +16,55 @@ import java.net.URI;
  *
  * @author Ardiyan
  */
+public class AppForm extends javax.swing.JFrame
+        implements WebSocketListener {
+    @Override
+    public void onOpen() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Koneksi ke server berhasil");
+        jTextAreaLog.append("\n");
+    }
+    @Override
+    public void onClose() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Koneksi ke server terputus");
+        jTextAreaLog.append("\n");
+    }
+    @Override
+    public void onError() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Ups, terjadi error di koneksi");
+        jTextAreaLog.append("\n");
+    }
+}
 
 public class SmsGatewayClient extends WebSocketClient {
- public SmsGatewayClient(URI serverURI) { super(serverURI); } 
- public void onOpen(ServerHandshake handshakedata) {}
- public void onMessage(String message) {} 
- public void onClose(int code, String reason, boolean remote) {}
- public void onError(Exception ex) {}
+    private WebSocketListener listener;
+    
+ public SmsGatewayClient(URI serverURI, WebSocketListener listener) { 
+     super(serverURI);
+     this.listener = listener;
+ } 
+ 
+ @Override
+ public void onOpen(ServerHandshake handshakedata) {
+     listener.onOpen();
+ }
+ 
+ @Override
+ public void onMessage(String message) {
+     listener.onMessage(message);
+ } 
+ 
+ @Override
+ public void onClose(int code, String reason, boolean remote) {
+     listener.onClose();
+ }
+ 
+ @Override
+ public void onError(Exception ex) {
+     listener.onError();
+ }
 }
 public interface WebSocketListener {
  void onOpen();
@@ -31,28 +73,6 @@ public interface WebSocketListener {
  void onMessage(String message);
 }
 
-public class SmsGatewayClient extends WebSocketClient {
- private WebSocketListener listener;
- public SmsGatewayClient(URI serverURI, WebSocketListener listener) {
- super(serverURI);
- this.listener = listener;
- }
- 
- public class AppForm exteds javax.swing.Jframe
-                          implements WebSocketListener {
-}
-
-                          
- public void onOpen(ServerHandshake handshakedata) {
- listener.onOpen(); }
- public void onMessage(String message) {
- listener.onMessage(message);
- }
- public void onClose(int code, String reason, boolean remote) {
- listener.onClose();
- }
- public void onError(Exception ex) { listener.onError(); }
-}
 
  
 public class LayoutPenjualanPulsa extends javax.swing.JFrame {
@@ -155,6 +175,11 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel4.setText("No Telepon : ");
 
+        jTextFieldNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNoActionPerformed(evt);
+            }
+        });
         jTextFieldNo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNoKeyTyped(evt);
@@ -181,15 +206,14 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextFieldNo, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,6 +329,10 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
        }
         
     }//GEN-LAST:event_jTextFieldNoKeyTyped
+
+    private void jTextFieldNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNoActionPerformed
 
     /**
      * @param args the command line arguments
