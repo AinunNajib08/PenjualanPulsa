@@ -4,52 +4,19 @@
  * and open the template in the editor.
  */
 package com.mycompany.appdekstoppulsa;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
-import java.net.URI;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ardiyan
  */
-public class SmsGatewayClient extends WebSocketClient {
-    private final WebSocketListener listener;
- public SmsGatewayClient(URI serverURI, WebSocketListener listener) {
- super(serverURI);
- this.listener = listener;
- }
- public void onOpen(ServerHandshake handshakedata) {
-     listener.onOpen();
- }
- public void onMessage(String message) {
-     listener.onMessage(message);
- }
- public void onClose(int code, String reason, boolean remote) {
-     listener.onClose();
- }
- public void onError(Exception ex) {
-    listener.onError();
-}
+public class LayoutPulsaDekstop extends javax.swing.JFrame 
+                                            implements WebSocketListener{
 
-}
-
- 
-
-public interface WebSocketListener {
- void onOpen();
- void onClose();
- void onError();
- void onMessage(String message);
- 
- public class AppForm extends javax.swing.JFrame                          
-            implements WebSocketListener{ 
- public void onOpen() {     
- jTextAreaLog.setAutoscrolls(true);     
- jTextAreaLog.append("Koneksi ke server berhasil");     
- jTextAreaLog.append("\n");  }
-}
-}
-public class LayoutPulsaDekstop extends javax.swing.JFrame {
+    /**
+     *
+     */
 
     /**
      * Creates new form LayoutPulsaDekstop
@@ -78,15 +45,15 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldTo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaMessage = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextAreaLog = new javax.swing.JTextArea();
 
         jLabel4.setText("jLabel4");
 
@@ -152,19 +119,19 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel7.setText("To :");
 
-        jTextField1.setFont(new java.awt.Font("Book Antiqua", 0, 11)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTo.setFont(new java.awt.Font("Book Antiqua", 0, 11)); // NOI18N
+        jTextFieldTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldToActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel8.setText(" Pesan :");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaMessage.setColumns(20);
+        jTextAreaMessage.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaMessage);
 
         jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         jButton1.setText("Kirim");
@@ -189,7 +156,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextFieldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -199,7 +166,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,9 +181,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel9.setText("Log");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextAreaLog.setColumns(20);
+        jTextAreaLog.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaLog);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -275,9 +242,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldToActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldToActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +275,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LayoutPulsaDekstop().setVisible(true);
             }
@@ -332,8 +300,63 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea jTextAreaLog;
+    private javax.swing.JTextArea jTextAreaMessage;
+    private javax.swing.JTextField jTextFieldTo;
     // End of variables declaration//GEN-END:variables
-}
+
+    @Override
+    public void onOpen() {
+          jTextAreaLog.setAutoscrolls(true); 
+          jTextAreaLog.append("Koneksi ke server berhasil"); 
+          jTextAreaLog.append("\n");  
+    }
+
+    @Override
+    public void onClose() {
+       jTextAreaLog.setAutoscrolls(true);     
+       jTextAreaLog.append("Koneksi ke server terputus");     
+       jTextAreaLog.append("\n");  
+    }
+
+    @Override
+    public void onError() {
+        jTextAreaLog.setAutoscrolls(true);     
+        jTextAreaLog.append("Ups, terjadi error di koneksi");     
+        jTextAreaLog.append("\n");  
+    }
+
+    @Override
+    public void onMessage(String message) {
+         JsonObject json = gson.fromJson(message, JsonObject.class);     
+   if(json.get("type").getAsString().equals("success")){ 
+   String msg = json.get("message").getAsString();     
+   JOptionPane.showMessageDialog(this, msg);
+   }else if(json.get("type").getAsString().equals("error")){ 
+   String msg = json.get("message").getAsString(); 
+   JOptionPane.showMessageDialog(this, msg); 
+   }else if(json.get("type").getAsString().equals("notification")){ 
+   String msg = json.get("message").getAsString();     
+   jTextAreaLog.setAutoscrolls(true);     
+   if(json.get("success").getAsBoolean()){         
+   jTextAreaLog.append("Laporan pengiriman sukses : " + msg);     
+   }else{ 
+   jTextAreaLog.append("Laporan pengiriman gagal : " + msg);     }     
+   jTextAreaLog.append("\n");
+   }else if(json.get("type").getAsString().equals("received")){ 
+   String msg = json.get("message").getAsString(); 
+   String from = json.get("from").getAsString(); 
+ 
+    int result = JOptionPane.showConfirmDialog(this, new String[]{            
+    "SMS dari " + from + " dengan pesan : ",             
+    msg,             
+    "Apakah ingin dibalas?"     
+   }}); 
+ 
+    if(result == JOptionPane.OK_OPTION){         // user mengklik OK (balas) 
+        String from;
+ 
+               jTextFieldTo.setText(from); 
+               jTextAreaMessage.setText("");     }  
+    } 
+   }

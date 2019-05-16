@@ -5,12 +5,17 @@
  */
 package com.mycompany.appdekstoppulsa;
 
-import java.net.URI;
-
 /**
  *
  * @author Ardiyan
  */
-public class WebSocketClient {
+public interface WebSocketListener {
+    void onOpen(); 
+ 
+    void onClose(); 
+ 
+    void onError(); 
+ 
+    void onMessage(String message); 
     
 }

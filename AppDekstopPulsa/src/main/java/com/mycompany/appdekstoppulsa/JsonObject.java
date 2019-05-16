@@ -5,12 +5,14 @@
  */
 package com.mycompany.appdekstoppulsa;
 
-import java.net.URI;
-
 /**
  *
  * @author Ardiyan
  */
-public class WebSocketClient {
+class JsonObject {
+
+    Object get(String type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
