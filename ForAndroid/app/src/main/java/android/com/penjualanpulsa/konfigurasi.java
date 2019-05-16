@@ -11,11 +11,11 @@ public class konfigurasi {
     //Pada tutorial Kali ini, karena kita membuat localhost maka alamatnya tertuju ke IP komputer
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
-    public static final String URL_ADD="http://dissentient-keyword.000webhostapp.com/Android/pegawai/tambahPgw.php";
-    public static final String URL_GET_ALL = "https://dissentient-keyword.000webhostapp.com/Android/pegawai/tampilSemuaPgw.php";
-    public static final String URL_GET_EMP = "http://dissentient-keyword.000webhostapp.com/Android/pegawai/tampilPgw.php?id=";
-    public static final String URL_UPDATE_EMP = "http://dissentient-keyword.000webhostapp.com/Android/pegawai/updatePgw.php";
-    public static final String URL_DELETE_EMP = "http://dissentient-keyword.000webhostapp.com/Android/pegawai/hapusPgw.php?id=";
+    public static final String URL_ADD="http://192.168.43.2/crud/Android/pegawai/tambahPgw.php";
+    public static final String URL_GET_ALL = "http://192.168.43.2/crud/Android/pegawai/tampilSemuaPgw.php";
+    public static final String URL_GET_EMP = "http://192.168.43.2/crud/Android/pegawai/tampilPgw.php?id=";
+    public static final String URL_UPDATE_EMP = "http://192.168.43.2/crud/Android/pegawai/updatePgw.php";
+    public static final String URL_DELETE_EMP = "http://192.168.43.2/crud/Android/pegawai/hapusPgw.php?id=";
 
     //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
     public static final String KEY_EMP_ID = "id";
