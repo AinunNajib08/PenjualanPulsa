@@ -157,7 +157,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +221,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,9 +339,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
    String msg = json.get("message").getAsString();     
    jTextAreaLog.setAutoscrolls(true);     
    if(json.get("success").getAsBoolean()){         
-   jTextAreaLog.append("Laporan pengiriman sukses : " + msg);     
+   jTextAreaLog.append("Selamat pengiriman sukses : " + msg);     
    }else{ 
-   jTextAreaLog.append("Laporan pengiriman gagal : " + msg);     }     
+   jTextAreaLog.append("Maaf pengiriman gagal : " + msg);     }     
    jTextAreaLog.append("\n");
    }else if(json.get("type").getAsString().equals("received")){ 
    String msg = json.get("message").getAsString(); 
@@ -350,7 +350,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     int result = JOptionPane.showConfirmDialog(this, new String[]{            
     "SMS dari " + from + " dengan pesan : ",             
     msg,             
-    "Apakah ingin dibalas?"     
+    "Apakah anda ingin dibalas?"     
    }}); 
  
     if(result == JOptionPane.OK_OPTION){         // user mengklik OK (balas) 
