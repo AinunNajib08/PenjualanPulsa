@@ -49,12 +49,12 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         jTextFieldTo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jButtonSend = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaMessage = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaLog = new javax.swing.JTextArea();
 
         jLabel4.setText("jLabel4");
@@ -146,12 +146,12 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         jLabel8.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel8.setText(" Pesan :");
 
+        jButtonSend.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        jButtonSend.setText("Kirim");
+
         jTextAreaMessage.setColumns(20);
         jTextAreaMessage.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaMessage);
-
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jButton1.setText("Kirim");
+        jScrollPane3.setViewportView(jTextAreaMessage);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -165,15 +165,17 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(jButtonSend)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))
                                 .addGap(35, 35, 35)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(326, 326, 326))
+                                    .addComponent(jScrollPane3))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -187,9 +189,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSend)
                 .addContainerGap())
         );
 
@@ -200,7 +202,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
 
         jTextAreaLog.setColumns(20);
         jTextAreaLog.setRows(5);
-        jScrollPane2.setViewportView(jTextAreaLog);
+        jScrollPane1.setViewportView(jTextAreaLog);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -209,11 +211,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +221,8 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                 .addGap(6, 6, 6)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -323,7 +323,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSend;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3Close;
@@ -339,7 +339,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextAreaLog;
     private javax.swing.JTextArea jTextAreaMessage;
     private javax.swing.JTextField jTextFieldTo;
@@ -347,23 +347,23 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
 
     @Override
     public void onOpen() {
-          jTextAreaLog.setAutoscrolls(true); 
-          jTextAreaLog.append("Koneksi ke server berhasil"); 
-          jTextAreaLog.append("\n");  
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Koneksi Ke server telah berhasil");
+        jTextAreaLog.append("\n");
     }
 
     @Override
     public void onClose() {
-       jTextAreaLog.setAutoscrolls(true);     
-       jTextAreaLog.append("Koneksi ke server terputus");     
-       jTextAreaLog.append("\n");  
+       jTextAreaLog.setAutoscrolls(true);
+       jTextAreaLog.append("Koneksi ke server telah gagal");
+       jTextAreaLog.append("\n");
     }
 
     @Override
     public void onError() {
-        jTextAreaLog.setAutoscrolls(true);     
-        jTextAreaLog.append("Ups, terjadi error di koneksi");     
-        jTextAreaLog.append("\n");  
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("waduh koneksi telah terputus");
+        jTextAreaLog.append("\n");
     }
 
     @Override
