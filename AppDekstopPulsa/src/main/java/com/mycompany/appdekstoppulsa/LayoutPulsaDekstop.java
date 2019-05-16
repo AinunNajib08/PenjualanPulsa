@@ -5,6 +5,8 @@
  */
 package com.mycompany.appdekstoppulsa;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,8 +41,8 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel3Close = new javax.swing.JLabel();
+        jLabel5Mn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -70,13 +72,23 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setText("The Hoax Celular");
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel3.setText("X");
+        jLabel3Close.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel3Close.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel3Close.setText("X");
+        jLabel3Close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3CloseMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel5.setText("-");
+        jLabel5Mn.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel5Mn.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel5Mn.setText("-");
+        jLabel5Mn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,9 +100,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel5Mn, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(jLabel3Close)
                 .addGap(11, 11, 11))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,8 +116,8 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel3Close, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5Mn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -123,6 +135,11 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         jTextFieldTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldToActionPerformed(evt);
+            }
+        });
+        jTextFieldTo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldToKeyTyped(evt);
             }
         });
 
@@ -246,6 +263,29 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldToActionPerformed
 
+    private void jLabel3CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3CloseMouseClicked
+
+        System.exit(0);
+        
+    }//GEN-LAST:event_jLabel3CloseMouseClicked
+
+    private void jLabel5MnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MnMouseClicked
+
+       this.setState(JFrame.ICONIFIED); 
+        
+    }//GEN-LAST:event_jLabel5MnMouseClicked
+
+    private void jTextFieldToKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldToKeyTyped
+
+        char c=evt.getKeyChar();
+       if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE))
+       {
+           getToolkit().beep();
+           evt.consume();
+       }
+       
+    }//GEN-LAST:event_jTextFieldToKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -286,9 +326,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel3Close;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel5Mn;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
