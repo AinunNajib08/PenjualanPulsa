@@ -10,5 +10,9 @@ package com.mycompany.appdekstoppulsa;
  * @author Ardiyan
  */
 class Gson {
+
+    JsonObject FromJson(String message, Class<JsonObject> aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

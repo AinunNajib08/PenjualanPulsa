@@ -7,8 +7,6 @@ package penjualan.pulsa.destop;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 
@@ -16,66 +14,12 @@ import java.net.URI;
  *
  * @author Ardiyan
  */
-public class AppForm extends javax.swing.JFrame
-        implements WebSocketListener {
-    @Override
-    public void onOpen() {
-        jTextAreaLog.setAutoscrolls(true);
-        jTextAreaLog.append("Koneksi ke server berhasil");
-        jTextAreaLog.append("\n");
-    }
-    @Override
-    public void onClose() {
-        jTextAreaLog.setAutoscrolls(true);
-        jTextAreaLog.append("Koneksi ke server terputus");
-        jTextAreaLog.append("\n");
-    }
-    @Override
-    public void onError() {
-        jTextAreaLog.setAutoscrolls(true);
-        jTextAreaLog.append("Ups, terjadi error di koneksi");
-        jTextAreaLog.append("\n");
-    }
-}
 
-public class SmsGatewayClient extends WebSocketClient {
-    private WebSocketListener listener;
-    
- public SmsGatewayClient(URI serverURI, WebSocketListener listener) { 
-     super(serverURI);
-     this.listener = listener;
- } 
- 
- @Override
- public void onOpen(ServerHandshake handshakedata) {
-     listener.onOpen();
- }
- 
- @Override
- public void onMessage(String message) {
-     listener.onMessage(message);
- } 
- 
- @Override
- public void onClose(int code, String reason, boolean remote) {
-     listener.onClose();
- }
- 
- @Override
- public void onError(Exception ex) {
-     listener.onError();
- }
-}
-public interface WebSocketListener {
- void onOpen();
- void onClose();
- void onError();
- void onMessage(String message);
-}
 
 
  
-public class LayoutPenjualanPulsa extends javax.swing.JFrame {
+public class LayoutPenjualanPulsa extends javax.swing.JFrame 
+                                                    implements WebSocketListener{
 
     /**
      * Creates new form LayoutPenjualanPulsa
@@ -389,4 +333,24 @@ public class LayoutPenjualanPulsa extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaPesan;
     private javax.swing.JTextField jTextFieldNo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onOpen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onClose() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onError() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onMessage(String message) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

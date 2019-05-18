@@ -88,15 +88,19 @@ public class WebSocketListenerTest {
 
     public class WebSocketListenerImpl implements WebSocketListener {
 
+        @Override
         public void onOpen() {
         }
 
+        @Override
         public void onClose() {
         }
 
+        @Override
         public void onError() {
         }
 
+        @Override
         public void onMessage(String message) {
         }
     }
