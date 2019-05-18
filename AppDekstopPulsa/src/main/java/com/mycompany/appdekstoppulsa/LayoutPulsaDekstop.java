@@ -5,6 +5,7 @@
  */
 package com.mycompany.appdekstoppulsa;
 
+import com.google.gson.Gson;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -369,7 +370,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     private final Gson gson = new Gson();
     @Override
     public void onMessage(String message) {
-         JsonObject json = gson.FromJson(message, JsonObject.class);
+         JsonObject json = gson.fromJson(message, JsonObject.class);
          if(json.get("type").getAsString().equals("sukses")) {
              String msg = json.get("message").getAsString();
              JOptionPane.showMessageDialog(this, msg);
@@ -386,7 +387,8 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
             }
             jTextAreaLog.append("\n");
         }else if(json.get("type").getAsString().equals("menerima")){
-            String msg = json.get("message").getAsString();
+            String msg;
+             msg = json.get("message").getAsString();
             String from = json.get("from").getAsString();
             
             int result = JOptionPane.showConfirmDialog(this, new String[]{

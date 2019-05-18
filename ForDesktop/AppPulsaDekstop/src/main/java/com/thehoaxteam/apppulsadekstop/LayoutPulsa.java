@@ -9,7 +9,13 @@ package com.thehoaxteam.apppulsadekstop;
  *
  * @author Ardiyan
  */
-public class LayoutPulsa extends javax.swing.JFrame {
+import com.google.gson.JsonObject;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class LayoutPulsa extends javax.swing.JFrame 
+                       implements WebSocketListener{
 
     /**
      * Creates new form LayoutPulsa
@@ -40,7 +46,7 @@ public class LayoutPulsa extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreLog = new javax.swing.JTextArea();
+        jTextAreaLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +54,6 @@ public class LayoutPulsa extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ardiyan\\Pictures\\hoaxnew.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("MingLiU-ExtB", 1, 36)); // NOI18N
@@ -102,9 +107,9 @@ public class LayoutPulsa extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Log");
 
-        jTextAreLog.setColumns(20);
-        jTextAreLog.setRows(5);
-        jScrollPane2.setViewportView(jTextAreLog);
+        jTextAreaLog.setColumns(20);
+        jTextAreaLog.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaLog);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,8 +225,35 @@ public class LayoutPulsa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextAreLog;
+    private javax.swing.JTextArea jTextAreaLog;
     private javax.swing.JTextArea jTextAreaMassage;
     private javax.swing.JTextField jTextFieldTo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onOpen() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Koneksi Ke Server Berhasil");
+        jTextAreaLog.append("\n");
+    }
+
+    @Override
+    public void onClose() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("Koneksi Ke server gagal");
+        jTextAreaLog.append("\n");
+    }
+
+    @Override
+    public void onError() {
+        jTextAreaLog.setAutoscrolls(true);
+        jTextAreaLog.append("ups. Terjadi eror pada koneksi");
+        jTextAreaLog.append("\n");
+    }
+
+    @Override
+    public void onMessage(String message) {
+        JsonObject json = gson.fromJson(message, JsonObject.class);
+        if(json.get("type").getAsString().equals("sukses"));{
+    }else if
 }
