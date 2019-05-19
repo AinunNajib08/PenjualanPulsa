@@ -35,7 +35,6 @@
                             <div id="home" class="tab-pane fade in active">
                                 <!--Awal form input-->
                                 <div class="container">
-                                    <?php echo form_open('biling/add') ?>
                                     <div class="form-group row">
                                         <div class="col-xs-2">
                                         <label for="to">To :</label> <br/>
@@ -48,6 +47,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <script type="text/javascript" src="app.js"></script>
+                                <script type="text/javascript" src="assets/js/app.js"></script>
                                 </body>
                                 </html>
