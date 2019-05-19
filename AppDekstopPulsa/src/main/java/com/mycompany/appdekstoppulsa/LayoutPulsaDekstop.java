@@ -78,17 +78,15 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 51));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/appdekstoppulsa/hoaxnew.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/appdekstoppulsa/hoax.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 36)); // NOI18N
         jLabel2.setText("The Hoax Celular");
 
         jLabel3Close.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel3Close.setForeground(new java.awt.Color(255, 255, 0));
         jLabel3Close.setText("X");
         jLabel3Close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,7 +95,6 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         });
 
         jLabel5Mn.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel5Mn.setForeground(new java.awt.Color(255, 255, 0));
         jLabel5Mn.setText("-");
         jLabel5Mn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,28 +119,35 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3Close, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5Mn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 27, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3Close, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5Mn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel6.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Form");
 
         jLabel7.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("To :");
 
         jTextFieldTo.setFont(new java.awt.Font("Book Antiqua", 0, 11)); // NOI18N
@@ -158,7 +162,9 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
             }
         });
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText(" Pesan :");
 
         jButtonSend.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
@@ -215,7 +221,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 0));
 
         jLabel9.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         jLabel9.setText("Log");
