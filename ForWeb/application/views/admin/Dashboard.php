@@ -41,12 +41,12 @@
                                         <input type="text" id="to"/> <br/> 
                                         <label for="message">Message :</label> <br/>
                                         <textarea id="message" cols="20" rows="5"></textarea> <br/>
-                                        <button id="send">Send SMS</button><br/><br/> 
+                                        <button id="send">send SMS</button><br/><br/> 
                                         <label for="log">Log</label> <br/>
                                         <textarea id="log" cols="50" rows="5"></textarea> <br/>
                                         </div>
                                     </div>
                                 </div>
-                                <script type="text/javascript" src="assets/js/app.js"></script>
+                                <script src="<?php echo base_url() ?>assets/js/app.js"></script>
                                 </body>
                                 </html>
