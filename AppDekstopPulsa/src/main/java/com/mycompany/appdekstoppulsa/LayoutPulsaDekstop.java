@@ -6,8 +6,14 @@
 package com.mycompany.appdekstoppulsa;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import java.awt.event.KeyEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,15 +25,21 @@ import javax.swing.JOptionPane;
 public class LayoutPulsaDekstop extends javax.swing.JFrame 
                                             implements WebSocketListener{
 
-    /**
-     *
-     */
-
-    /**
-     * Creates new form LayoutPulsaDekstop
-     */
-    public LayoutPulsaDekstop() {
+    private SmsGatewayClient client;
+    
+   
+    
+    public LayoutPulsaDekstop() throws URISyntaxException, InterruptedException {
         initComponents();
+        
+        try {
+            client = new SmsGatewayClient(new URI("ws://192.168.1.8989"), this);
+            client.connectBlocking();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -151,6 +163,11 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
 
         jButtonSend.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         jButtonSend.setText("Kirim");
+        jButtonSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSendActionPerformed(evt);
+            }
+        });
 
         jTextAreaMessage.setColumns(20);
         jTextAreaMessage.setRows(5);
@@ -289,6 +306,27 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
        
     }//GEN-LAST:event_jTextFieldToKeyTyped
 
+    private void jButtonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSendActionPerformed
+        JsonObject object = new JsonObject();
+        object.add("message", new JsonPrimitive(jTextAreaMessage.getText()));
+        
+        if(jTextFieldTo.getText().contains(",")){
+            String[] tos = jTextFieldTo.getText().split(",");
+            JsonArray array = new JsonArray();
+            for(String to : tos){
+                array.add(new JsonPrimitive(to));
+            }
+            object.add("to", array);
+        }else{
+            object.add("to", new JsonPrimitive(jTextFieldTo.getText()));
+        }
+        
+        
+        String json = gson.toJson(object);
+        client.send(json);
+        
+    }//GEN-LAST:event_jButtonSendActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,7 +358,11 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LayoutPulsaDekstop().setVisible(true);
+                try {
+                    new LayoutPulsaDekstop().setVisible(true);
+                } catch (URISyntaxException | InterruptedException ex) {
+                    Logger.getLogger(LayoutPulsaDekstop.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
