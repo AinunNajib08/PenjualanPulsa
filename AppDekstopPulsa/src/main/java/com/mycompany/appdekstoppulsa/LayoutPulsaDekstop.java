@@ -6,9 +6,11 @@
 package com.mycompany.appdekstoppulsa;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -368,38 +370,39 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     }
 
     private final Gson gson = new Gson();
+    
     @Override
     public void onMessage(String message) {
-         JsonObject json = gson.fromJson(message, JsonObject.class);
-         if(json.get("type").getAsString().equals("sukses")) {
-             String msg = json.get("message").getAsString();
-             JOptionPane.showMessageDialog(this, msg);
-        }else if(json.get("type").getAsString().equals("eror")){
-            String msg = json.get("message").getAsString();
+        JsonObject json = gson.fromJson(message, JsonObject.class);
+        if(json.get("type").getAsString().equals("sukses")){
+            String msg = json.get("massage").getAsString();
             JOptionPane.showMessageDialog(this, msg);
-        }else if(json.get("type").getAsString().equals("notifikasi")){
-            String msg = json.get("message").getAsString();
-            jTextAreaLog.setAutoscrolls(true);
-            if(json.get("succes").getAsBoolean()){
-                jTextAreaLog.append("Pengiriman anda sukses : " + msg);
-            }else{
-                jTextAreaLog.append("Pengiriman anda gagal : " + msg);
-            }
-            jTextAreaLog.append("\n");
-        }else if(json.get("type").getAsString().equals("menerima")){
-            String msg;
-             msg = json.get("message").getAsString();
-            String from = json.get("from").getAsString();
-            
-            int result = JOptionPane.showConfirmDialog(this, new String[]{
-             "SMS dari " + from + "dengan pesan : ",
-                msg,
-                "apakah ingin dibalas ?"
-        });
-            if(result == JOptionPane.OK_OPTION){
-                jTextFieldTo.setText(from);
-                jTextAreaMessage.setText("");
-            }
-       }
+    }else if(json.get("type").getAsString().equals("eror")){
+        String msg = json.get("type").getAsString();
+        JOptionPane.showMessageDialog(this,msg);
+    }else if(json.get("type").getAsString().equals("notifikasi")){
+        String msg = json.get("message").getAsString();
+        jTextAreaLog.setAutoscrolls(true);
+        if(json.get("sukses").getAsBoolean()){
+            jTextAreaLog.append("Laporan Pengiriman Anda Sukses : " + msg);
+        }else{
+            jTextAreaLog.append("Laporan Pengiriman Anda Gagal : " + msg);
+        }
+        jTextAreaLog.append("\n");
+    }else if(json.get("type").getAsString().equals("received")){
+        String msg = json.get("message").getAsString();
+        String from = json.get("from").getAsString();
+        
+        int result = JOptionPane.showConfirmDialog(this, new String[]{
+            "SMS dari " + from + "dengan pesan : ",
+            msg,
+            "Apakah anda ingin membalasnya ?"
+    });
+        if(result == JOptionPane.OK_OPTION){
+            jTextFieldTo.setText(from);
+            jTextAreaMessage.setText("");
+        }
     }
+}
+    
 }

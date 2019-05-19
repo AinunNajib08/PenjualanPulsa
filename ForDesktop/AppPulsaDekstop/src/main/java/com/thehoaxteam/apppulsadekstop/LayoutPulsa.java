@@ -42,7 +42,7 @@ public class LayoutPulsa extends javax.swing.JFrame
         jTextFieldTo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaMassage = new javax.swing.JTextArea();
+        jTextAreaMessage = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -91,9 +91,9 @@ public class LayoutPulsa extends javax.swing.JFrame
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Message :");
 
-        jTextAreaMassage.setColumns(20);
-        jTextAreaMassage.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaMassage);
+        jTextAreaMessage.setColumns(20);
+        jTextAreaMessage.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaMessage);
 
         jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         jButton1.setText("Kirim");
@@ -226,7 +226,7 @@ public class LayoutPulsa extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaLog;
-    private javax.swing.JTextArea jTextAreaMassage;
+    private javax.swing.JTextArea jTextAreaMessage;
     private javax.swing.JTextField jTextFieldTo;
     // End of variables declaration//GEN-END:variables
 
@@ -254,6 +254,35 @@ public class LayoutPulsa extends javax.swing.JFrame
     @Override
     public void onMessage(String message) {
         JsonObject json = gson.fromJson(message, JsonObject.class);
-        if(json.get("type").getAsString().equals("sukses"));{
-    }else if
+        if(json.get("type").getAsString().equals("sukses")){
+            String msg = json.get("massage").getAsString();
+            JOptionPane.showMessageDialog(this, msg);
+    }else if(json.get("type").getAsString().equals("eror")){
+        String msg = json.get("type").getAsString();
+        JOptionPane.showMessageDialog(this,msg);
+    }else if(json.get("type").getAsString().equals("notifikasi")){
+        String msg = json.get("message").getAsString();
+        jTextAreaLog.setAutoscrolls(true);
+        if(json.get("sukses").getAsBoolean()){
+            jTextAreaLog.append("Laporan Pengiriman Anda Sukses : " + msg);
+        }else{
+            jTextAreaLog.append("Laporan Pengiriman Anda Gagal : " + msg);
+        }
+        jTextAreaLog.append("\n");
+    }else if(json.get("type").getAsString().equals("received")){
+        String msg = json.get("message").getAsString();
+        String from = json.get("from").getAsString();
+        
+        int result = JOptionPane.showConfirmDialog(this, new String[]{
+            "SMS dari " + from + "dengan pesan : ",
+            msg,
+            "Apakah anda ingin membalasnya ?"
+    });
+        if(result == JOptionPane.OK_OPTION){
+            jTextFieldTo.setText(from);
+            jTextAreaMessage.setText("");
+        }
+    }
+}
+
 }

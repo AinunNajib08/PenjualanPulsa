@@ -20,15 +20,19 @@ public class SmsGatewayClient extends WebSocketClient {
  super(serverURI);
  this.listener = listener;
  }
+    @Override
  public void onOpen(ServerHandshake handshakedata) {
      listener.onOpen();
  }
+    @Override
  public void onMessage(String message) {
      listener.onMessage(message);
  }
+    @Override
  public void onClose(int code, String reason, boolean remote) {
      listener.onClose();
  }
+    @Override
  public void onError(Exception ex) {
     listener.onError();
 }
