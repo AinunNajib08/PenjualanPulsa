@@ -336,7 +336,7 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -362,41 +362,12 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
-                try {
                     new LayoutPulsaDekstop().setVisible(true);
-                } catch (URISyntaxException | InterruptedException ex) {
-                    Logger.getLogger(LayoutPulsaDekstop.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonSend;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3Close;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5Mn;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextAreaLog;
-    private javax.swing.JTextArea jTextAreaMessage;
-    private javax.swing.JTextField jTextFieldTo;
-    // End of variables declaration//GEN-END:variables
-
-    @Override
+         });
+      }
+   @Override
     public void onOpen() {
         jTextAreaLog.setAutoscrolls(true);
         jTextAreaLog.append("Koneksi Ke server telah berhasil");
@@ -453,4 +424,29 @@ public class LayoutPulsaDekstop extends javax.swing.JFrame
     }
 }
     
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSend;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3Close;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5Mn;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextAreaLog;
+    private javax.swing.JTextArea jTextAreaMessage;
+    private javax.swing.JTextField jTextFieldTo;
+    // End of variables declaration//GEN-END:variables
+
 }
