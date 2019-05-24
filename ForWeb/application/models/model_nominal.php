@@ -5,34 +5,33 @@ class Model_nominal extends CI_Model
 	
 	public function tampil_data()
 	{
-		$query="SELECT nominal.id_nominal, nominal.nama_nominal, kategori.nama_kategori, proveder.nama_proveder,nominal.deskripsi, nominal.hpp, nominal.harga_jual, nominal.stok
-		FROM nominal
-		JOIN proveder ON proveder.id_proveder = nominal.id_proveder
-		JOIN kategori ON kategori.id_kategori = nominal.id_kategori";
+		$query="SELECT harga.nominal, harga.harga_jual
+		FROM harga
+		JOIN operator ON operator.id_transaksi = harga.id_transaksi";
 		return $this->db->query($query);
 	}
 
 	function post($data)
 	{
-		$this->db->insert('nominal',$data);
+		$this->db->insert('harga',$data);
 	}
 
 	function get_one($id)
 	{
-		$param = array('id_nominal'=>$id);
-		return $this->db->get_where('nominal',$param);
+		$param = array('nominal'=>$id);
+		return $this->db->get_where('harga',$param);
 	}
 
 	function edit($data,$id)
 	{
-		$this->db->where('id_nominal',$id);
-		$this->db->update('nominal',$data);
+		$this->db->where('nominal',$id);
+		$this->db->update('harga',$data);
 	}
 
 	function delete($id)
 	{
-		$this->db->where('id_nominal',$id);
-		$this->db->delete('nominal');
+		$this->db->where('nominal',$id);
+		$this->db->delete('harga');
 	}
 
 	
