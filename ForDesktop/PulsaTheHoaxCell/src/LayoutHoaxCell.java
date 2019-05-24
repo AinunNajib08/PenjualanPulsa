@@ -84,7 +84,7 @@ public class LayoutHoaxCell extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         jLabel6.setText("Nominal");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rp.5000", "Rp.10000", "Rp.20000", "Rp.30000", "Rp.50000" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
