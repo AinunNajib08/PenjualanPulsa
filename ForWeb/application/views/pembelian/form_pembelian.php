@@ -40,7 +40,7 @@ if ($this->session->userdata('level') == "karyawan") {
             <table class="table table-striped">
           <tr><td width="130">Id Transaksi</td>
                   <td><div class="col-sm-4">
-                  <input type="text" name="trans" class="form-control" placeholder="Id Transaksi">
+                  <input type="text" name="input_id_transaksi" class="form-control" placeholder="Id Transaksi">
                   </div>
                  </td></tr>
                  <tr>
@@ -51,24 +51,24 @@ if ($this->session->userdata('level') == "karyawan") {
                  </td></tr>
                  <tr><td width="130">Operator</td>
                   <td><div class="col-sm-4">
-                    <input type="text" name="op" class="form-control" placeholder="Operator">
+                    <input type="text" name="input_operator" class="form-control" placeholder="Operator">
                     </div>
                  </td></tr>
                  <tr><td width="130">Nominal</td>
                   <td><div class="col-sm-4">
-                  <li class="dropdown"><a href="#">Nominal</a>
-                  <ul class="isi-dropdown">
-                 <!-- <input type="text" name="nml" class="form-control" placeholder="Nominal"> -->
+                  <!-- <li class="dropdown"><a href="#">Nominal</a>
+                  <ul class="isi-dropdown"> -->
+                 <input type="text" name="input_nominal" class="form-control" placeholder="Nominal">
                   </div>
                  </td></tr>
                  <tr><td width="130">Harga Jual</td>
                   <td><div class="col-sm-4">
-                  <input type="text" name="harga" class="form-control" placeholder="Harga Jual"> 
+                  <input type="text" name="input_harga_jual" class="form-control" placeholder="Harga Jual"> 
                   </div>
                   </td></tr>
                   <tr><td width="130">No Tujuan</td>
                   <td><div class="col-sm-4">
-                  <input type="text" name="no" class="form-control" placeholder="No Tujuan">
+                  <input type="text" name="input_no_tujuan" class="form-control" placeholder="No Tujuan">
                   </div>
                  </td></tr>
               <tr><td colspan="2"><button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan</button>
@@ -86,26 +86,23 @@ if ($this->session->userdata('level') == "karyawan") {
                             <table class="table table-bordered">
             <tr>
                 <th>Id</th>
-                <th>Tanggal</th>
                 <th>Operator</th>
                 <th>Nominal</th>
                 <th>Harga Jual</th>
-                <th>Subtotal</th>
                 <th>Cancel</th>
             </tr>
             <tr>
                 <?php 
                 $total=0;
                 $no=1;
-                foreach ($transaksi as $row): 
+                foreach ($detail_transaksi as $row): 
                 ?>
                 <td><?php echo $no; ?></td>
-                <td><?php echo $row->nama_nominal; ?></td>
-                <td><?php echo $row->nama_kategori; ?></td>
-                <td><?php echo $row->nama_proveder; ?></td>
-                <td><?php echo $row->qty; ?></td>
-                <td><?php echo $row->harga_pokok; ?></td>
-                <td><?php echo $total=$row->qty*$row->harga_pokok; ?></td>
+                <td><?php echo $row->id_transaksi; ?></td>
+                <td><?php echo $row->operator; ?></td>
+                <td><?php echo $row->nominal; ?></td>
+                <td><?php echo $row->harga_jual; ?></td>
+               <!-- <td><?php echo $total=$row->qty*$row->harga_pokok; ?></td>
                 <td><?php echo anchor('index.php/pembelian/cancel/'.$row->id,'Cancel', array('class' => 'btn btn-danger')) ?></td>
                  </tr>
                     <?php $no++; ?>
