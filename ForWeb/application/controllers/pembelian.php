@@ -7,8 +7,6 @@ class Pembelian extends CI_Controller {
         $this->load->model('model_pembelian');
         $this->load->model('model_pembelian_detail');
         $this->load->model('model_nominal');
-        $this->load->model('model_kategori');
-        $this->load->model('model_proveder');
     }
 
     function index() {

@@ -38,30 +38,34 @@ if ($this->session->userdata('level') == "karyawan") {
             <!-- Awal panel -->
             <!-- Awal Coding Lihat Data -->
             <table class="table table-striped">
-          <tr><td width="130">Pilih Nominal</td>
+          <tr><td width="130">Id Transaksi</td>
                   <td><div class="col-sm-4">
                           <?php echo cmb_dinamis('nominal','nominal','nama_nominal','id_nominal') ?>
                  </td></tr>
                  <tr>
-                     <td width="130">Pilih Kategori</td>
+                     <td width="130">Tanggal Transaksi</td>
                   <td>
                       <div class="col-sm-4">
                           
                           <?php echo cmb_dinamis('kategori','kategori','nama_kategori','id_kategori') ?>
                  </td></tr>
-                 <tr><td width="130">Pilih Provider</td>
+                 <tr><td width="130">Operator</td>
                   <td><div class="col-sm-4">
                           
                           <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
                  </td></tr>
-                 <tr><td width="130">Deskripsi Pulsa</td>
-                  <td><div class="col-sm-12"><textarea type="text" name="deskripsi" class="form-control" placeholder="Masukkan deskripsi"></textarea></div>
+                 <tr><td width="130">Nominal</td>
+                  <td><div class="col-sm-4">
+                          
+                          <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
                  </td></tr>
-                 <tr><td width="130">Harga Pokok</td>
+                 <tr><td width="130">Harga Jual</td>
+                  <td><div class="col-sm-4">
+                  <tr><td width="130">No Tujuan</td>
                   <td><div class="col-sm-4"><input type="text" name="hpp" class="form-control" placeholder="Harga pokok"></div>
                  </td></tr>
-                 <tr><td width="130">Qty</td>
-                  <td><div class="col-sm-4"><input type="text" name="stok" class="form-control" placeholder="Qty"></div>
+
+                          <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
                  </td></tr>
               <tr><td colspan="2"><button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan</button>
                   <?php echo anchor('nominal','Kembali',array('class'=>'btn btn-primary btn-sm'))?>
@@ -77,12 +81,11 @@ if ($this->session->userdata('level') == "karyawan") {
                     <div class="panel-body">
                             <table class="table table-bordered">
             <tr>
-                <th>No</th>
-                <th>Nama Pulsa</th>
-                <th>Kategori</th>
-                <th>Provider</th>
-                <th>Qty</th>
-                <th>Harga</th>
+                <th>Id</th>
+                <th>Tanggal</th>
+                <th>Operator</th>
+                <th>Nominal</th>
+                <th>Harga Jual</th>
                 <th>Subtotal</th>
                 <th>Cancel</th>
             </tr>
