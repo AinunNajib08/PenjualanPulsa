@@ -5,17 +5,24 @@
  */
 package hoaxcelldestop;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
  */
 public class layoutHoax extends javax.swing.JFrame {
+    DefaultTableModel model;
 
     /**
      * Creates new form layoutHoax
      */
     public layoutHoax() {
         initComponents();
+        String [] field = {"id", "id_transaksi", "operator", "nominal", "harga_jual", "tanggaal", "no_tujuan"};
+        model = new DefaultTableModel(field, 0);
+        tabelhistori.setModel(model);
+        tampilkan();
     }
 
     /**
@@ -27,15 +34,15 @@ public class layoutHoax extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        tanggal = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        tabelhistori = new javax.swing.JTable();
+        tambah = new javax.swing.JButton();
+        texthargajual = new javax.swing.JTextField();
+        inputnominal = new javax.swing.JComboBox<>();
+        inputoperator = new javax.swing.JComboBox<>();
+        textnotelp = new javax.swing.JTextField();
+        textid = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -50,10 +57,10 @@ public class layoutHoax extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1028, 653));
         getContentPane().setLayout(null);
-        getContentPane().add(jDateChooser2);
-        jDateChooser2.setBounds(200, 252, 140, 30);
+        getContentPane().add(tanggal);
+        tanggal.setBounds(200, 350, 140, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelhistori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -81,59 +88,59 @@ public class layoutHoax extends javax.swing.JFrame {
                 "No", "No.Telp", "Tanggal", "Operator", "Nominal", "Harga Jual"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelhistori);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(400, 150, 580, 360);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tambahkan");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(200, 470, 120, 40);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(200, 400, 140, 30);
+        tambah.setBackground(new java.awt.Color(0, 153, 0));
+        tambah.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tambah.setForeground(new java.awt.Color(255, 255, 255));
+        tambah.setText("Tambahkan");
+        getContentPane().add(tambah);
+        tambah.setBounds(200, 470, 120, 40);
+        getContentPane().add(texthargajual);
+        texthargajual.setBounds(200, 300, 140, 30);
 
-        jComboBox2.setBackground(new java.awt.Color(0, 153, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "25000", "50000", "100000" }));
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(200, 350, 140, 30);
+        inputnominal.setBackground(new java.awt.Color(0, 153, 255));
+        inputnominal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "25000", "50000", "100000" }));
+        getContentPane().add(inputnominal);
+        inputnominal.setBounds(200, 250, 140, 30);
 
-        jComboBox1.setBackground(new java.awt.Color(0, 153, 255));
-        jComboBox1.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren", " " }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(200, 300, 140, 30);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(200, 200, 140, 30);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(200, 150, 140, 30);
+        inputoperator.setBackground(new java.awt.Color(0, 153, 255));
+        inputoperator.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
+        inputoperator.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren", " " }));
+        getContentPane().add(inputoperator);
+        inputoperator.setBounds(200, 200, 140, 30);
+        getContentPane().add(textnotelp);
+        textnotelp.setBounds(200, 400, 140, 30);
+        getContentPane().add(textid);
+        textid.setBounds(200, 150, 140, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Harga Jual");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 400, 100, 30);
+        jLabel10.setBounds(30, 300, 100, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Nominal");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 350, 100, 30);
+        jLabel9.setBounds(30, 250, 100, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Operator");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 300, 100, 30);
+        jLabel8.setBounds(30, 200, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("TGL Transaksi");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 250, 130, 30);
+        jLabel7.setBounds(30, 350, 130, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("No Telpon");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(30, 200, 100, 30);
+        jLabel6.setBounds(30, 400, 100, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("ID Transaksi");
@@ -198,10 +205,8 @@ public class layoutHoax extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JComboBox<String> inputnominal;
+    private javax.swing.JComboBox<String> inputoperator;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -213,9 +218,15 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tabelhistori;
+    private javax.swing.JButton tambah;
+    private com.toedter.calendar.JDateChooser tanggal;
+    private javax.swing.JTextField texthargajual;
+    private javax.swing.JTextField textid;
+    private javax.swing.JTextField textnotelp;
     // End of variables declaration//GEN-END:variables
+
+    private void tampilkan() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
