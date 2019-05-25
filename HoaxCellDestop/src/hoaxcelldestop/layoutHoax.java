@@ -86,7 +86,7 @@ public class layoutHoax extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(400, 150, 580, 360);
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setBackground(new java.awt.Color(0, 153, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tambahkan");
@@ -96,12 +96,13 @@ public class layoutHoax extends javax.swing.JFrame {
         jTextField3.setBounds(200, 400, 140, 30);
 
         jComboBox2.setBackground(new java.awt.Color(0, 153, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "50000", "100000" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "25000", "50000", "100000" }));
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(200, 350, 140, 30);
 
         jComboBox1.setBackground(new java.awt.Color(0, 153, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis" }));
+        jComboBox1.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren", " " }));
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(200, 300, 140, 30);
         getContentPane().add(jTextField2);
