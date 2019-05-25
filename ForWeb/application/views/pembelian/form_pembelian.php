@@ -40,32 +40,36 @@ if ($this->session->userdata('level') == "karyawan") {
             <table class="table table-striped">
           <tr><td width="130">Id Transaksi</td>
                   <td><div class="col-sm-4">
-                          <?php echo cmb_dinamis('nominal','nominal','nama_nominal','id_nominal') ?>
+                  <input type="text" name="trans" class="form-control" placeholder="Id Transaksi">
+                  </div>
                  </td></tr>
                  <tr>
-                     <td width="130">Tanggal Transaksi</td>
-                  <td>
-                      <div class="col-sm-4">
-                          
-                          <?php echo cmb_dinamis('kategori','kategori','nama_kategori','id_kategori') ?>
+                     <td width="135">Tanggal Transaksi</td>
+                  <td><div class="col-sm-4">
+                        <input type="date" value="today">
+                      </div>
                  </td></tr>
                  <tr><td width="130">Operator</td>
                   <td><div class="col-sm-4">
-                          
-                          <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
+                    <input type="text" name="op" class="form-control" placeholder="Operator">
+                    </div>
                  </td></tr>
                  <tr><td width="130">Nominal</td>
                   <td><div class="col-sm-4">
-                          
-                          <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
+                  <li class="dropdown"><a href="#">Nominal</a>
+                  <ul class="isi-dropdown">
+                 <!-- <input type="text" name="nml" class="form-control" placeholder="Nominal"> -->
+                  </div>
                  </td></tr>
                  <tr><td width="130">Harga Jual</td>
                   <td><div class="col-sm-4">
+                  <input type="text" name="harga" class="form-control" placeholder="Harga Jual"> 
+                  </div>
+                  </td></tr>
                   <tr><td width="130">No Tujuan</td>
-                  <td><div class="col-sm-4"><input type="text" name="hpp" class="form-control" placeholder="Harga pokok"></div>
-                 </td></tr>
-
-                          <?php echo cmb_dinamis('proveder','proveder','nama_proveder','id_proveder') ?>
+                  <td><div class="col-sm-4">
+                  <input type="text" name="no" class="form-control" placeholder="No Tujuan">
+                  </div>
                  </td></tr>
               <tr><td colspan="2"><button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan</button>
                   <?php echo anchor('nominal','Kembali',array('class'=>'btn btn-primary btn-sm'))?>
