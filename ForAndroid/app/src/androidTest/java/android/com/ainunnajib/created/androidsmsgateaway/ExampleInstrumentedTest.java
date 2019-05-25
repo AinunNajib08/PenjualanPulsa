@@ -1,4 +1,4 @@
-package android.com.penjualanpulsa;
+package android.com.ainunnajib.created.androidsmsgateaway;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("android.com.penjualanpulsa", appContext.getPackageName());
+        assertEquals("android.com.ainunnajib.created.androidsmsgateaway", appContext.getPackageName());
     }
 }
