@@ -28,6 +28,7 @@ public class LayoutHoaxCell extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -170,9 +171,8 @@ public class LayoutHoaxCell extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldId)
                             .addComponent(jComboBoxOperator, 0, 139, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBoxNominal, javax.swing.GroupLayout.Alignment.LEADING, 0, 93, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jComboBoxNominal, 0, 93, Short.MAX_VALUE)
+                            .addComponent(jTextField3)
                             .addComponent(jTextField2)
                             .addComponent(jDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -283,6 +283,7 @@ public class LayoutHoaxCell extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxNominal;
     private javax.swing.JComboBox<String> jComboBoxOperator;
     private com.toedter.calendar.JDateChooser jDateChooser;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
