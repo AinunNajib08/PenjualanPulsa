@@ -29,76 +29,38 @@ echo form_open('index.php/transaksi/add');
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money"></i> Form Transaksi</h3>
-        </div>
-        <div class="panel-body">
-            <!-- Awal panel -->
-            <!-- Awal Coding Lihat Data -->
-            <table class="table table-bordered">
-                <tr><td>
-                        <div class="col-sm-2">
-                            <input name="no_hp" id="no_hp" required="" placeholder="Masukkan no hp" onkeyup="otomatis()" class="form-control">
-                        
-                        </div>       
-                        <div class="col-sm-2">
-                            <input name="nominal" id="nama_nominal" required="" placeholder="Masukkan nama nominal pulsa" readonly="" class="form-control">
-                            <input type="hidden" name="id_nominal" id="id_nominal"> 
-                        </div>
-                        <div class="col-sm-2">
-                            <input name="kategori" id="nama_kategori" required="" placeholder="kategori" readonly="" class="form-control">
-                            <input type="hidden" name="id_kategori" id="id_kategori" placeholder="kategori" readonly="" class="form-control">
-                        </div>
-                        <div class="col-sm-2">
-                            <input name="provedor" id="nama_proveder" required="" placeholder="provedor" readonly="" class="form-control">
-                       </div>
-                        <div class="col-sm-1">
-                            <input type="text" name="qty" placeholder="QTY" required="" value="1" class="form-control" readonly="">
-                        </div>  
-                        <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                        <?php echo anchor('index.php/transaksi/selesai_belanja', 'Selesai', array('class' => 'btn btn-success')) ?>
-                    </td></tr>
-            </table>
-            <?php echo form_close(); ?>
-
-            <div class="col-md-13">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-money"></i> Detail Transaksi</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <tr>
-                                <th>No</th>
-                                <th>Nama Pulsa</th>
-                                <th>Kategori</th>
-                                <th>Provider</th>
-                                <th>Qty</th>
-                                <th>Harga</th>
-                                <th>Subtotal</th>
+                                <th>Id Transaksi</th>
+                                <th>Operator</th>
+                                <th>Nominal</th>
+                                <th>Harga Jual</th>
+                                <th>No Tujuan</th>
                                 <th>Cancel</th>
                             </tr>
                             <?php
-                            $kurang=1;
-                            $a=0;
-                            $total=0;
-                            $no = 1;
-                            foreach ($nominal as $row):
-                                ?>
-                                <tr>
-                                    <td><?php echo $no; ?></td>
-                                    <td><?php echo $row->nama_nominal; ?></td>
 
-                                    <td><?php echo $row->nama_kategori; ?></td>
-                                    
-                                    <td><?php echo $row->nama_proveder; ?></td>
-                                    
-                                    <td><?php echo $a=$row->qty-$kurang; ?></td>
-                                    <td><?php echo $row->harga_pulsa; ?></td>
-                                    <td><?php echo $total=$row->harga_pulsa*$a; ?></td>
-                                    <td><?php echo anchor('index.php/transaksi/batal/'.$row->id_transaksi,'CANCEL', array('class' => 'btn btn-danger')) ?></td>
-                                </tr>
-                                <?php $no++; ?>
-<?php endforeach; ?>      
-                        </table>
+                foreach($trans->result_array() as $id):
+
+                $id_transaksi=$id['id_transaksi'];
+                $operator=$id['operator'];
+                $nominal=$id['nominal'];
+                $harga_jual=$id['harga_jual'];
+                $no_tujuan=$id['no_tujuan'];
+                ?>
+            <tr>
+
+            <td><?php echo $id_transaksi;?> </td>
+            <td><?php echo $operator;?> </td>
+            <td><?php echo $nominal;?> </td>
+            <td><?php echo $harga_jual;?> </td>
+            <td><?php echo $no_tujuan;?> </td>
+            </tr>
+
+            <?php endforeach;?>
+  </table>
                     </div>
                 </div>
             </div>

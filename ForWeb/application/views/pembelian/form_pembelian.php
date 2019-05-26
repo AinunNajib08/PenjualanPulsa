@@ -38,7 +38,7 @@ if ($this->session->userdata('level') == "karyawan") {
             <!-- Awal panel -->
             <!-- Awal Coding Lihat Data -->
             <table class="table table-striped">
-          <tr><td width="130">Id Transaksi</td>
+          <tr><td width="130">Transaksi</td>
                   <td><div class="col-sm-4">
                   <input type="text" name="input_id_transaksi" class="form-control" placeholder="Id Transaksi">
                   </div>
