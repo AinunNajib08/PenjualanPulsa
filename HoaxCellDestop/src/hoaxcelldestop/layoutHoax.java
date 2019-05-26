@@ -89,7 +89,7 @@ public class layoutHoax extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "No.Telp", "Tanggal", "Operator", "Nominal", "Harga Jual"
+                "ID Transaksi", "Operator", "Nominal", "Harga Jual", "TGL Transaksi", "No Telpon"
             }
         ));
         jScrollPane1.setViewportView(tabelhistori);
