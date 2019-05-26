@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class layoutHoax extends javax.swing.JFrame {
     DefaultTableModel model;
+    private String tgl;
 
     /**
      * Creates new form layoutHoax
@@ -210,8 +212,8 @@ public class layoutHoax extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
-            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tanggal.getDateFormatString()+"')");
-                    koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi VALUES ('"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi VALUES ('"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
                             tampilkan();
                             reset();
         } catch (SQLException ex) {
@@ -220,7 +222,10 @@ public class layoutHoax extends javax.swing.JFrame {
     }//GEN-LAST:event_tambahActionPerformed
 
     private void tanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalPropertyChange
-
+        if(tanggal.getDate() != null){
+            SimpleDateFormat format_tanggal = new SimpleDateFormat("yyyy-MM-dd");
+            tgl = format_tanggal.format(tanggal.getDate());
+        }
     }//GEN-LAST:event_tanggalPropertyChange
     private Connection koneksi;
 
