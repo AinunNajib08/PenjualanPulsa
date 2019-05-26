@@ -6,11 +6,14 @@ class Pembelian extends CI_Controller {
         parent:: __construct();
         $this->load->model('model_harga');
         $this->load->model('model_detailtransaksi');
+        $this->load->model('model_operator');
+        $this->load->model('model_detailharga');
     }
 
-    function index() {
-      
-        $this->load->view('pembelian/form_pembelian');
+   function index() {
+        $data['operator'] = $this->model_operator->get();
+        $data['harga'] = $this->model_detailharga->get();
+        $this->load->view('pembelian/form_pembelian',$data);
       }
 
     function post() {
@@ -38,5 +41,6 @@ class Pembelian extends CI_Controller {
     public function pembelian() {
         $this->load->view('pembelian/form_pembelian');
     }
-
+ 
+    
 }

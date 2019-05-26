@@ -60,4 +60,9 @@ class model_detailtransaksi extends CI_Model {
     $this->db->where('detail_transaksi', $hrg);
     $this->db->delete('pulsa'); // Untuk mengeksekusi perintah delete data
   }
+  public function tampil_data_chained($id){
+	$query = $this->db->query("SELECT * FROM detail_transaksi where operator = '$opr'");
+	return $query;
+}
+
 }
