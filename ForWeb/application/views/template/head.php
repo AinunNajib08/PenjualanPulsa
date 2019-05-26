@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Sistem Informasi Penjualan Pulsa</title>
+  <title> The Hoax Cellular</title>
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
   <script src="<?php echo base_url('assets/js/jquery.min.js') ?>" type="text/javascript"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" type="text/javascript"></script>
