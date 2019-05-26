@@ -5,10 +5,15 @@
  */
 package hoaxcelldestop;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,9 +26,9 @@ public class layoutHoax extends javax.swing.JFrame {
     /**
      * Creates new form layoutHoax
      */
-    public layoutHoax() {
+    public layoutHoax() throws SQLException {
         initComponents();
-        String [] field = {"id", "id_transaksi", "operator", "nominal", "harga_jual", "tanggaal", "no_tujuan"};
+        String [] field = {"id_transaksi", "operator", "nominal", "harga_jual", "tanggal", "no_telepon"};
         model = new DefaultTableModel(field, 0);
         tabelhistori.setModel(model);
         tampilkan();
@@ -61,6 +66,12 @@ public class layoutHoax extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1028, 653));
         getContentPane().setLayout(null);
+
+        tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tanggalPropertyChange(evt);
+            }
+        });
         getContentPane().add(tanggal);
         tanggal.setBounds(200, 350, 140, 30);
 
@@ -92,6 +103,11 @@ public class layoutHoax extends javax.swing.JFrame {
                 "ID Transaksi", "Operator", "Nominal", "Harga Jual", "TGL Transaksi", "No Telpon"
             }
         ));
+        tabelhistori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelhistoriMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelhistori);
 
         getContentPane().add(jScrollPane1);
@@ -101,6 +117,11 @@ public class layoutHoax extends javax.swing.JFrame {
         tambah.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tambah.setForeground(new java.awt.Color(255, 255, 255));
         tambah.setText("Tambahkan");
+        tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahActionPerformed(evt);
+            }
+        });
         getContentPane().add(tambah);
         tambah.setBounds(200, 470, 120, 40);
         getContentPane().add(texthargajual);
@@ -173,6 +194,36 @@ public class layoutHoax extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabelhistoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelhistoriMouseClicked
+        int a = tabelhistori.getSelectedRow();
+        if (a > -1){
+            textid.setText(model.getValueAt(a, 0).toString());
+            inputoperator.setSelectedItem(model.getValueAt(a, 1).toString());
+            inputnominal.setSelectedItem(model.getValueAt(a, 2).toString());
+            texthargajual.setText(model.getValueAt(a, 3).toString());
+            tanggal.setDate(null);
+            textnotelp.setText(model.getValueAt(a, 5).toString());
+    
+        }
+    }//GEN-LAST:event_tabelhistoriMouseClicked
+
+    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+        try {
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
+            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tanggal.getDateFormatString()+"')");
+                    koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi VALUES ('"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+                            tampilkan();
+                            reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tambahActionPerformed
+
+    private void tanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalPropertyChange
+
+    }//GEN-LAST:event_tanggalPropertyChange
+    private Connection koneksi;
+
     /**
      * @param args the command line arguments
      */
@@ -203,7 +254,11 @@ public class layoutHoax extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new layoutHoax().setVisible(true);
+                try {
+                    new layoutHoax().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -230,15 +285,29 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JTextField textnotelp;
     // End of variables declaration//GEN-END:variables
 
-    private void tampilkan() throws SQLException {
-       int row = tabelhistori.getRowCount();
-       for (int i = 0; i < row ; i++){
-           model.removeRow(0);
-       }
-       Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
-       ResultSet rs = koneksi.createStatement().executeQuery("SELECT transaksi.id_transaksi, detail_transaksi.operator, detail_transaksi.nominal, detail_transaksi.harga_jual, transaksi.tanggal, detail_transaksi.no_tujuan FROM transaksi, detail_transaksi WHERE transaksi.id_transaksi=detail_transaksi.id_transaksi");
-       while (rs.next()){
-           String [] data = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
-       }
+    private void tampilkan() {
+        try {
+            int row = tabelhistori.getRowCount();
+            for (int i = 0; i < row ; i++){
+                model.removeRow(0);
+            }
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
+            ResultSet rs = koneksi.createStatement().executeQuery("SELECT transaksi.id_transaksi, detail_transaksi.operator, detail_transaksi.nominal, detail_transaksi.harga_jual, transaksi.tanggal, detail_transaksi.no_telepon FROM transaksi, detail_transaksi WHERE transaksi.id_transaksi=detail_transaksi.id_transaksi");
+            while (rs.next()){
+                String [] data = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
+                model.addRow(data);
+            }} catch (SQLException ex) {
+            Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void reset() {
+        textid.setText("");
+        inputoperator.setSelectedItem("");
+        inputnominal.setSelectedItem("");
+        texthargajual.setText("");
+        tanggal.setDateFormatString("");
+        textnotelp.setText("");
+        
     }
 }
