@@ -2,11 +2,11 @@ package com.najib.gatewayserver;
 
 public class konfigurasi {
 
-        public static final String URL_ADD="http://192.168.1.7/crud/Android/pegawai/tambahPgw.php";
-        public static final String URL_GET_ALL = "https://192.168.43.1/crud/Android/pegawai/tampilSemuaPgw.php";
-        public static final String URL_GET_EMP = "http://192.168.1.7/crud/Android/pegawai/tampilPgw.php?id=";
-        public static final String URL_UPDATE_EMP = "http://192.168.1.7/crud/Android/pegawai/updatePgw.php";
-        public static final String URL_DELETE_EMP = "http://dissentient-keyword.000webhostapp.com/Android/pegawai/hapusPgw.php?id=";
+        public static final String URL_ADD="http://https://192.168.43.2/crud/Android/pegawai/tambahPgw.php";
+        public static final String URL_GET_ALL = "https://192.168.43.2/crud/Android/pegawai/tampilSemuaPgw.php";
+        public static final String URL_GET_EMP = "https://192.168.43.2/crud/Android/pegawai/tampilPgw.php?id=";
+        public static final String URL_UPDATE_EMP = "https://192.168.43.2/crud/Android/pegawai/updatePgw.php";
+        public static final String URL_DELETE_EMP = "http://https://192.168.43.2/Android/pegawai/hapusPgw.php?id=";
 
         //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
         public static final String KEY_EMP_ID = "id";
