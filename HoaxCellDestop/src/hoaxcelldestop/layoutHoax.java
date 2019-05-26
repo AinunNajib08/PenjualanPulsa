@@ -5,6 +5,10 @@
  */
 package hoaxcelldestop;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -85,7 +89,7 @@ public class layoutHoax extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "No.Telp", "Tanggal", "Operator", "Nominal", "Harga Jual"
+                "ID Transaksi", "Operator", "Nominal", "Harga Jual", "TGL Transaksi", "No Telpon"
             }
         ));
         jScrollPane1.setViewportView(tabelhistori);
@@ -226,7 +230,15 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JTextField textnotelp;
     // End of variables declaration//GEN-END:variables
 
-    private void tampilkan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void tampilkan() throws SQLException {
+       int row = tabelhistori.getRowCount();
+       for (int i = 0; i < row ; i++){
+           model.removeRow(0);
+       }
+       Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
+       ResultSet rs = koneksi.createStatement().executeQuery("SELECT transaksi.id_transaksi, detail_transaksi.operator, detail_transaksi.nominal, detail_transaksi.harga_jual, transaksi.tanggal, detail_transaksi.no_tujuan FROM transaksi, detail_transaksi WHERE transaksi.id_transaksi=detail_transaksi.id_transaksi");
+       while (rs.next()){
+           String [] data = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
+       }
     }
 }
