@@ -38,10 +38,13 @@ echo form_open('index.php/transaksi/add');
                                 <th>Nominal</th>
                                 <th>Harga Jual</th>
                                 <th>No Tujuan</th>
-                                <th>Cancel</th>
+                                <th>Hapus Data</th>
                             </tr>
                             <?php
-
+  $kurang=1;
+  $a=0;
+  $total=0;
+  $no = 1;
                 foreach($trans->result_array() as $id):
 
                 $id_transaksi=$id['id_transaksi'];
@@ -57,6 +60,7 @@ echo form_open('index.php/transaksi/add');
             <td><?php echo $nominal;?> </td>
             <td><?php echo $harga_jual;?> </td>
             <td><?php echo $no_tujuan;?> </td>
+            <td><?php echo anchor('index.php/transaksi/hapus/'.$id->id,'hapus', array('class' => 'btn btn-danger')) ?></td> 
             </tr>
 
             <?php endforeach;?>

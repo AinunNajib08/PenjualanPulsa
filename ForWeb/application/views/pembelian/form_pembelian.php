@@ -1,5 +1,6 @@
 <?php
 $this->load->view('template/head');
+$rand = rand(10, 100000);
 ?>
 <!-- CSS -->
 <!--tambahkan custom css disini-->
@@ -40,13 +41,14 @@ if ($this->session->userdata('level') == "karyawan") {
             <table class="table table-striped">
           <tr><td width="130">Transaksi</td>
                   <td><div class="col-sm-4">
-                  <input type="text" name="input_id_transaksi" class="form-control" placeholder="Id Transaksi">
+                  <input type="text" name="input_id_transaksi" class="form-control" placeholder="Id Transaksi" value="<?php echo $rand; ?>">
+                  <!-- <button type="submit" class="btn btn-primary btn-sm" name="submit">+</button> -->
                   </div>
                  </td></tr>
                  <tr>
                      <td width="135">Tanggal Transaksi</td>
                   <td><div class="col-sm-4">
-                        <input type="date" class="form-control" placeholder="Pilih Tangal">
+                        <input type="date" name="input_tanggal" class="form-control" placeholder="Pilih Tangal">
               
                       </div>
                  </td></tr>
