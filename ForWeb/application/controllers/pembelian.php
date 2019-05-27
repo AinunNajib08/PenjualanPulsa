@@ -4,28 +4,28 @@ class Pembelian extends CI_Controller {
 
     function __construct() {
         parent:: __construct();
-        $this->load->model('model_pembelian');
-        $this->load->model('model_pembelian_detail');
-        $this->load->model('model_nominal');
+        $this->load->model('model_harga');
+        $this->load->model('model_detailtransaksi');
+        $this->load->model('model_operator');
+        $this->load->model('model_detailharga');
     }
 
-    function index() {
-        $data['transaksi']= $this->db->query("SELECT tp.id,n.nama_nominal,k.nama_kategori,p.nama_proveder,tp.qty,tp.harga_pokok FROM transaksi_pembelian AS tp, kategori as k, proveder as p, nominal as n WHERE tp.id_kategori=k.id_kategori AND tp.id_provider=p.id_proveder AND tp.id_nominal=n.id_nominal AND tp.status=0")->result();
+   function index() {
+        $data['operator'] = $this->model_operator->get();
+        $data['harga'] = $this->model_detailharga->get();
         $this->load->view('pembelian/form_pembelian',$data);
-    }
+      }
 
     function post() {
         if (isset($_POST['submit'])) {
              $data=array(
-                 'id_nominal' => $this->input->post('nominal'),
-                 'id_kategori'=> $this->input->post('kategori'),
-                 'id_provider'=> $this->input->post('proveder'),
-                 'dekripsi'   => $this->input->post('deskripsi'),
-                 'harga_pokok'=> $this->input->post('hpp'),
-                 'qty'        => $this->input->post('stok'),
-                 'user_id'    => $this->session->userdata('id_user')
+                "id_transaksi"   => $this->input->post('input_id_transaksi'),
+                "operator"       => $this->input->post('input_operator'),
+                "nominal"        => $this->input->post('input_nominal'),
+                "harga_jual"     => $this->input->post('input_harga_jual'),
+                "no_tujuan"      => $this->input->post('input_no_tujuan')
                  );
-                 $this->db->insert('transaksi_pembelian',$data);
+                 $this->db->insert('detail_transaksi',$data);
                  redirect('index.php/pembelian');
         } else {
             $this->load->view('pembelian/form_pembelian');
@@ -35,11 +35,12 @@ class Pembelian extends CI_Controller {
     public function cancel() {
         $id= $this->uri->segment(3);
         $this->db->where('id',$id);
-        $this->db->delete('transaksi_pembelian');
+        $this->db->delete('detail_transaksi');
         redirect('index.php/pembelian');
     }
     public function pembelian() {
         $this->load->view('pembelian/form_pembelian');
     }
-
+ 
+    
 }
