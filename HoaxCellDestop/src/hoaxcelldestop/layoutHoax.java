@@ -272,6 +272,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         rand = new Random();
         int R = rand.nextInt(50);
+        SendSMSApp();
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
             koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"','"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
@@ -403,6 +404,10 @@ public class layoutHoax extends javax.swing.JFrame {
         tanggal.setDateFormatString("");
         textnotelp.setText("");
         
+    }
+
+    private void SendSMSApp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
