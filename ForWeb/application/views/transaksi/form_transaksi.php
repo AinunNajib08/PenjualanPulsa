@@ -38,7 +38,6 @@ echo form_open('index.php/transaksi/add');
                                 <th>Nominal</th>
                                 <th>Harga Jual</th>
                                 <th>No Tujuan</th>
-                                <th>Hapus Data</th>
                             </tr>
                             <?php
   $kurang=1;
@@ -59,8 +58,7 @@ echo form_open('index.php/transaksi/add');
             <td><?php echo $operator;?> </td>
             <td><?php echo $nominal;?> </td>
             <td><?php echo $harga_jual;?> </td>
-            <td><?php echo $no_tujuan;?> </td>
-            <td><?php echo anchor('index.php/transaksi/hapus/'.$id->id,'hapus', array('class' => 'btn btn-danger')) ?></td> 
+            <td><?php echo $no_tujuan;?> </td> 
             </tr>
 
             <?php endforeach;?>
