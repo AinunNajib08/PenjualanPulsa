@@ -274,8 +274,8 @@ public class layoutHoax extends javax.swing.JFrame {
         int R = rand.nextInt(50);
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
-            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");
-            koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"'"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"','"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");         
                             tampilkan();
                             reset();
         } catch (SQLException ex) {
@@ -296,7 +296,6 @@ public class layoutHoax extends javax.swing.JFrame {
 
     private void textidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textidActionPerformed
         // TODO add your handling code here:
-        textid.setText(""+R);
     }//GEN-LAST:event_textidActionPerformed
 
     private void randomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomActionPerformed
@@ -310,7 +309,7 @@ public class layoutHoax extends javax.swing.JFrame {
 
     private void random2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_random2ActionPerformed
         // TODO add your handling code here:
-        textid.setText(""+F);
+        textid1.setText(""+F);
     }//GEN-LAST:event_random2ActionPerformed
 
     private Connection koneksi;
