@@ -28,7 +28,8 @@ public class layoutHoax extends javax.swing.JFrame {
     DefaultTableModel model;
     private String tgl;
     Random rand = new Random();
-    int R = rand.nextInt(50);
+    int R = rand.nextInt(1000);
+    int F = rand.nextInt(1000);
 
     /**
      * Creates new form layoutHoax
@@ -50,6 +51,8 @@ public class layoutHoax extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        textid1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         tanggal = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelhistori = new javax.swing.JTable();
@@ -75,13 +78,26 @@ public class layoutHoax extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1028, 653));
         getContentPane().setLayout(null);
 
+        textid1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textid1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textid1);
+        textid1.setBounds(170, 150, 140, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("ID ");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(20, 150, 130, 30);
+
         tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tanggalPropertyChange(evt);
             }
         });
         getContentPane().add(tanggal);
-        tanggal.setBounds(170, 350, 140, 30);
+        tanggal.setBounds(170, 400, 140, 30);
 
         tabelhistori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,7 +143,7 @@ public class layoutHoax extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelhistori);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(380, 150, 630, 360);
+        jScrollPane1.setBounds(350, 150, 630, 360);
 
         tambah.setBackground(new java.awt.Color(0, 153, 0));
         tambah.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -139,9 +155,9 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tambah);
-        tambah.setBounds(130, 470, 120, 40);
+        tambah.setBounds(170, 520, 140, 40);
         getContentPane().add(texthargajual);
-        texthargajual.setBounds(170, 300, 140, 30);
+        texthargajual.setBounds(170, 350, 140, 30);
 
         inputnominal.setBackground(new java.awt.Color(0, 153, 255));
         inputnominal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "25000", "50000", "100000" }));
@@ -151,15 +167,15 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(inputnominal);
-        inputnominal.setBounds(170, 250, 140, 30);
+        inputnominal.setBounds(170, 300, 140, 30);
 
         inputoperator.setBackground(new java.awt.Color(0, 153, 255));
         inputoperator.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
         inputoperator.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren", " " }));
         getContentPane().add(inputoperator);
-        inputoperator.setBounds(170, 210, 140, 30);
+        inputoperator.setBounds(170, 250, 140, 30);
         getContentPane().add(textnotelp);
-        textnotelp.setBounds(170, 400, 140, 30);
+        textnotelp.setBounds(170, 450, 140, 30);
 
         textid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +183,7 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(textid);
-        textid.setBounds(170, 170, 140, 30);
+        textid.setBounds(170, 200, 90, 30);
 
         random.setText("R");
         random.addActionListener(new java.awt.event.ActionListener() {
@@ -176,37 +192,37 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(random);
-        random.setBounds(320, 170, 40, 30);
+        random.setBounds(270, 200, 40, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Harga Jual");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 300, 100, 30);
+        jLabel10.setBounds(20, 350, 100, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Nominal");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 250, 100, 30);
+        jLabel9.setBounds(20, 300, 100, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Operator");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 210, 100, 30);
+        jLabel8.setBounds(20, 250, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("TGL Transaksi");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 350, 130, 30);
+        jLabel7.setBounds(20, 400, 130, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("No Telpon");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(30, 400, 100, 30);
+        jLabel6.setBounds(20, 450, 100, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("ID Transaksi");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 170, 130, 30);
+        jLabel4.setBounds(20, 200, 130, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
@@ -278,6 +294,10 @@ public class layoutHoax extends javax.swing.JFrame {
         textid.setText(""+R);
     }//GEN-LAST:event_randomActionPerformed
 
+    private void textid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textid1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textid1ActionPerformed
+
     private Connection koneksi;
 
     /**
@@ -324,6 +344,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> inputoperator;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -339,6 +360,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser tanggal;
     private javax.swing.JTextField texthargajual;
     private javax.swing.JTextField textid;
+    private javax.swing.JTextField textid1;
     private javax.swing.JTextField textnotelp;
     // End of variables declaration//GEN-END:variables
 
