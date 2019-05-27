@@ -9,6 +9,7 @@ class transaksi extends CI_Controller {
             parent::__construct();
 
             $this->load->model('model_transaksi');
+            $this->load->model('model_detailtransaksi');
 
       }
 
@@ -21,5 +22,10 @@ class transaksi extends CI_Controller {
             $this->load->view('transaksi/form_transaksi',$data);
 
       }
-
+      public function hapus(){
+            $id= $this->uri->segment(3);
+            $this->db->where('id',$id);
+            $this->db->delete('detail_transaksi');
+            redirect('index.php/transaksi');
+        }
 }

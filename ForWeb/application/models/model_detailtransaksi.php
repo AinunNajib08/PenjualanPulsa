@@ -51,17 +51,17 @@ class model_detailtransaksi extends CI_Model {
         "no_tujuan" => $this->input->post('input_no_tujuan')
     );
     
-    $this->db->where('detail_transaksi', $pls);
-    $this->db->update('pulsa', $data); // Untuk mengeksekusi perintah update data
+    $this->db->where('id', $pls);
+    $this->db->update('detail_transaksi', $data); // Untuk mengeksekusi perintah update data
   }
   
 
   public function delete($hrg){
-    $this->db->where('detail_transaksi', $hrg);
-    $this->db->delete('pulsa'); // Untuk mengeksekusi perintah delete data
+    $this->db->where('id', $hrg);
+    $this->db->delete('detail_transaksi'); // Untuk mengeksekusi perintah delete data
   }
   public function tampil_data_chained($id){
-	$query = $this->db->query("SELECT * FROM detail_transaksi where operator = '$opr'");
+	$query = $this->db->query("SELECT * FROM detail_transaksi, transaksi where transaksi.id_transaksi = detail_transaksi.id_transaksi ");
 	return $query;
 }
 
