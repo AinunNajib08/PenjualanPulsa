@@ -36,7 +36,7 @@ public class layoutHoax extends javax.swing.JFrame {
      */
     public layoutHoax() throws SQLException {
         initComponents();
-        String [] field = {"id_transaksi", "operator", "nominal", "harga_jual", "tanggal", "no_telepon"};
+        String [] field = {"id","id_transaksi", "operator", "nominal", "harga_jual", "tanggal", "no_telepon"};
         model = new DefaultTableModel(field, 0);
         tabelhistori.setModel(model);
         tampilkan();
@@ -51,6 +51,7 @@ public class layoutHoax extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        random2 = new javax.swing.JButton();
         textid1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         tanggal = new com.toedter.calendar.JDateChooser();
@@ -78,13 +79,22 @@ public class layoutHoax extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1028, 653));
         getContentPane().setLayout(null);
 
+        random2.setText("R");
+        random2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                random2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(random2);
+        random2.setBounds(270, 150, 40, 30);
+
         textid1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textid1ActionPerformed(evt);
             }
         });
         getContentPane().add(textid1);
-        textid1.setBounds(170, 150, 140, 30);
+        textid1.setBounds(170, 150, 90, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("ID ");
@@ -265,7 +275,7 @@ public class layoutHoax extends javax.swing.JFrame {
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
             koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");
-            koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"'"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
                             tampilkan();
                             reset();
         } catch (SQLException ex) {
@@ -297,6 +307,11 @@ public class layoutHoax extends javax.swing.JFrame {
     private void textid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textid1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textid1ActionPerformed
+
+    private void random2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_random2ActionPerformed
+        // TODO add your handling code here:
+        textid.setText(""+F);
+    }//GEN-LAST:event_random2ActionPerformed
 
     private Connection koneksi;
 
@@ -355,6 +370,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton random;
+    private javax.swing.JButton random2;
     private javax.swing.JTable tabelhistori;
     private javax.swing.JButton tambah;
     private com.toedter.calendar.JDateChooser tanggal;
@@ -373,7 +389,7 @@ public class layoutHoax extends javax.swing.JFrame {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
             ResultSet rs = koneksi.createStatement().executeQuery("SELECT detail_transaksi.id, transaksi.id_transaksi, detail_transaksi.operator, detail_transaksi.nominal, detail_transaksi.harga_jual, transaksi.tanggal, detail_transaksi.no_telepon FROM transaksi, detail_transaksi WHERE transaksi.id_transaksi=detail_transaksi.id_transaksi");
             while (rs.next()){
-                String [] data = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
+                String [] data = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)};
                 model.addRow(data);
             }} catch (SQLException ex) {
             Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
