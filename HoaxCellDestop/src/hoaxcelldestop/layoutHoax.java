@@ -5,19 +5,28 @@
  */
 package hoaxcelldestop;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.io.IOException;
 import static java.lang.Math.random;
 import java.util.Random;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
 
 /**
  *
@@ -26,18 +35,40 @@ import javax.swing.table.DefaultTableModel;
 public class layoutHoax extends javax.swing.JFrame {
     DefaultTableModel model;
     private String tgl;
+    Random rand = new Random();
+    int R = rand.nextInt(1000);
+    int F = rand.nextInt(1000);
 
     /**
      * Creates new form layoutHoax
      */
     public layoutHoax() throws SQLException {
         initComponents();
-        String [] field = {"id", "id_transaksi", "operator", "nominal", "harga_jual", "tanggal", "no_telepon"};
+        String [] field = {"id","id_transaksi", "operator", "nominal", "harga_jual", "tanggal", "no_telepon"};
         model = new DefaultTableModel(field, 0);
         tabelhistori.setModel(model);
         tampilkan();
     }
-
+    private void SendPesan(){
+        try {
+            JsonObject object = new JsonObject();
+            object.add("no", new JsonPrimitive("082234906072"));
+            object.add("pesan", new JsonPrimitive("pulsa anda terkirim"));
+            
+            Gson gson = new Gson();
+            String json = gson.toJson(object);
+            
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpPost post = new HttpPost("http://192.168.43.1:8000");
+            post.setEntity(new StringEntity(json));
+            httpClient.execute(post);
+        } catch (IOException ex) {
+            Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +78,9 @@ public class layoutHoax extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        random2 = new javax.swing.JButton();
+        textid1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         tanggal = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelhistori = new javax.swing.JTable();
@@ -56,8 +90,7 @@ public class layoutHoax extends javax.swing.JFrame {
         inputoperator = new javax.swing.JComboBox<>();
         textnotelp = new javax.swing.JTextField();
         textid = new javax.swing.JTextField();
-        textid1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        random = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -73,13 +106,35 @@ public class layoutHoax extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1028, 653));
         getContentPane().setLayout(null);
 
+        random2.setText("R");
+        random2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                random2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(random2);
+        random2.setBounds(270, 150, 40, 30);
+
+        textid1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textid1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textid1);
+        textid1.setBounds(170, 150, 90, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("ID ");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(20, 150, 130, 30);
+
         tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tanggalPropertyChange(evt);
             }
         });
         getContentPane().add(tanggal);
-        tanggal.setBounds(180, 410, 140, 30);
+        tanggal.setBounds(170, 400, 140, 30);
 
         tabelhistori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,7 +180,7 @@ public class layoutHoax extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelhistori);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(400, 150, 600, 360);
+        jScrollPane1.setBounds(350, 150, 630, 360);
 
         tambah.setBackground(new java.awt.Color(0, 153, 0));
         tambah.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -137,9 +192,9 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tambah);
-        tambah.setBounds(200, 530, 120, 40);
+        tambah.setBounds(170, 520, 140, 40);
         getContentPane().add(texthargajual);
-        texthargajual.setBounds(180, 360, 140, 30);
+        texthargajual.setBounds(170, 350, 140, 30);
 
         inputnominal.setBackground(new java.awt.Color(0, 153, 255));
         inputnominal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5000", "10000", "25000", "50000", "100000" }));
@@ -149,54 +204,62 @@ public class layoutHoax extends javax.swing.JFrame {
             }
         });
         getContentPane().add(inputnominal);
-        inputnominal.setBounds(180, 310, 140, 30);
+        inputnominal.setBounds(170, 300, 140, 30);
 
         inputoperator.setBackground(new java.awt.Color(0, 153, 255));
         inputoperator.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
         inputoperator.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren", " " }));
         getContentPane().add(inputoperator);
-        inputoperator.setBounds(180, 260, 140, 30);
+        inputoperator.setBounds(170, 250, 140, 30);
         getContentPane().add(textnotelp);
-        textnotelp.setBounds(180, 460, 140, 30);
-        getContentPane().add(textid);
-        textid.setBounds(180, 210, 140, 30);
-        getContentPane().add(textid1);
-        textid1.setBounds(180, 150, 140, 30);
+        textnotelp.setBounds(170, 450, 140, 30);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("Id");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(30, 150, 110, 40);
+        textid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textid);
+        textid.setBounds(170, 200, 90, 30);
+
+        random.setText("R");
+        random.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomActionPerformed(evt);
+            }
+        });
+        getContentPane().add(random);
+        random.setBounds(270, 200, 40, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Harga Jual");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 360, 100, 30);
+        jLabel10.setBounds(20, 350, 100, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Nominal");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 310, 100, 30);
+        jLabel9.setBounds(20, 300, 100, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Operator");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 260, 100, 30);
+        jLabel8.setBounds(20, 250, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("TGL Transaksi");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 410, 130, 30);
+        jLabel7.setBounds(20, 400, 130, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("No Telpon");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(30, 460, 100, 30);
+        jLabel6.setBounds(20, 450, 100, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("ID Transaksi");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 210, 130, 30);
+        jLabel4.setBounds(20, 200, 130, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
@@ -215,7 +278,7 @@ public class layoutHoax extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hoaxcelldestop/gambar1.jpg"))); // NOI18N
         jLabel1.setText("Id");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 0, 1030, 650);
+        jLabel1.setBounds(0, 0, 1040, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,10 +297,12 @@ public class layoutHoax extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelhistoriMouseClicked
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+        rand = new Random();
+        int R = rand.nextInt(50);
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
-            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");
             koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"','"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
+            koneksi.createStatement().executeUpdate("INSERT INTO transaksi VALUES ('"+textid.getText()+"','"+tgl+"')");         
                             tampilkan();
                             reset();
         } catch (SQLException ex) {
@@ -255,6 +320,24 @@ public class layoutHoax extends javax.swing.JFrame {
     private void inputnominalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputnominalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputnominalActionPerformed
+
+    private void textidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textidActionPerformed
+
+    private void randomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomActionPerformed
+        // TODO add your handling code here:
+        textid.setText(""+R);
+    }//GEN-LAST:event_randomActionPerformed
+
+    private void textid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textid1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textid1ActionPerformed
+
+    private void random2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_random2ActionPerformed
+        // TODO add your handling code here:
+        textid1.setText(""+F);
+    }//GEN-LAST:event_random2ActionPerformed
 
     private Connection koneksi;
 
@@ -312,6 +395,8 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton random;
+    private javax.swing.JButton random2;
     private javax.swing.JTable tabelhistori;
     private javax.swing.JButton tambah;
     private com.toedter.calendar.JDateChooser tanggal;
@@ -345,6 +430,10 @@ public class layoutHoax extends javax.swing.JFrame {
         tanggal.setDateFormatString("");
         textnotelp.setText("");
         
+    }
+
+    private void SendSMSApp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
