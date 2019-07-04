@@ -18,17 +18,17 @@ public class konfigurasi {
     public static final String URL_DELETE_EMP = "http://192.168.43.2/Android/pegawai/hapusPgw.php?id=";
 
     //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
-    public static final String KEY_EMP_ID = "id";
-    public static final String KEY_EMP_NAMA = "name";
-    public static final String KEY_EMP_POSISI = "desg"; //desg itu variabel untuk posisi
-    public static final String KEY_EMP_GAJIH = "salary"; //salary itu variabel untuk gajih
+    public static final String KEY_EMP_ID_TRANS = "id_trans";
+    public static final String KEY_EMP_NOHP = "no_hp";
+    public static final String KEY_EMP_PROVIDER = "provider";
+    public static final String KEY_EMP_JUMLAH = "jumlah"; //desg itu variabel untuk posisi
 
     //JSON Tags
     public static final String TAG_JSON_ARRAY="result";
-    public static final String TAG_ID = "id";
-    public static final String TAG_NAMA = "name";
-    public static final String TAG_POSISI = "desg";
-    public static final String TAG_GAJIH = "salary";
+    public static final String TAG_ID_TRANS = "id_trans";
+    public static final String TAG_NOHP = "no_hp";
+    public static final String TAG_PROVIDER = "provider";
+    public static final String TAG_JUMLAH = "salary";
 
     //ID karyawan
     //emp itu singkatan dari Employee

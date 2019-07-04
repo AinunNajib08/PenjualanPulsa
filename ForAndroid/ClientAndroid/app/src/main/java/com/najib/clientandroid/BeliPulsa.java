@@ -1,6 +1,7 @@
 package com.najib.clientandroid;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.najib.clientandroid.Rest.ApiClient;
+import com.najib.clientandroid.Rest.ApiInterface;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,9 +31,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BeliPulsa extends AppCompatActivity {
+    ProgressDialog progressDialog;
+    private String refreshFlag = "0";
 
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -37,6 +49,8 @@ public class BeliPulsa extends AppCompatActivity {
     private EditText tanggal, nomor, id_trans, date;
     Spinner provider,nominal;
     TextView notif;
+    Random rand = new Random();
+    int n = rand.nextInt(2000000);
 
     public boolean checkNetworkConnection() {
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -80,26 +94,23 @@ public class BeliPulsa extends AppCompatActivity {
         notif = (TextView) findViewById(R.id.notif);
 
         checkNetworkConnection();
-        date = (EditText)
+        date = (EditText) findViewById(R.id.tanggal);
         id_trans = (EditText) findViewById(R.id.id_trans);
         provider = (Spinner) findViewById(R.id.provider);
         nominal = (Spinner) findViewById(R.id.nominal);
         nomor = (EditText) findViewById(R.id.nomor);
 
-// Create an ArrayAdapter using the string array and a default spinner layout
+        id_trans.setText(""+n);
+        progressDialog = new ProgressDialog(this);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         provider.setAdapter(adapter);
 
-// Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> data= ArrayAdapter.createFromResource(this,
                 R.array.nominal, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         data.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         nominal.setAdapter(data);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         tvDateResult = (TextView) findViewById(R.id.date);
@@ -111,9 +122,49 @@ public class BeliPulsa extends AppCompatActivity {
                 showDateDialog();
             }
         });
-
     }
 
+    private void addEmployee(){
+        final String trans = id_trans.getText().toString().trim();
+        final String no = nomor.getText().toString().trim();
+        final String prov = provider.getSelectedItem().toString().trim();
+        final String jum = nominal.getSelectedItem().toString().trim();
+
+        class AddEmployee extends AsyncTask<Void,Void,String> {
+
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(BeliPulsa.this,"Menambahkan...","Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(BeliPulsa.this,s, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... v) {
+                HashMap<String,String> params = new HashMap<>();
+                params.put(konfigurasi.KEY_EMP_ID_TRANS,trans);
+                params.put(konfigurasi.KEY_EMP_NOHP,no);
+                params.put(konfigurasi.KEY_EMP_PROVIDER,prov);
+                params.put(konfigurasi.KEY_EMP_JUMLAH,jum);
+
+
+                RequestHandler rh = new RequestHandler();
+                String res = rh.sendPostRequest(konfigurasi.URL_ADD, params);
+                return res;
+            }
+        }
+
+        AddEmployee ae = new AddEmployee();
+        ae.execute();
+    }
 
 
     private String httpPost(String myUrl) throws IOException, JSONException {
@@ -138,6 +189,11 @@ public class BeliPulsa extends AppCompatActivity {
         // 5. return response message
         return conn.getResponseMessage()+"";
 
+    }
+
+    public void tambah(View view) {
+        n++;
+        id_trans.setText(""+n);
     }
 
 
@@ -166,7 +222,6 @@ public class BeliPulsa extends AppCompatActivity {
 
     public void send(View view) {
         Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
-        // perform HTTP POST request
         if(checkNetworkConnection())
             new HTTPAsyncTask().execute("http://192.168.43.1:8000");
         else
@@ -176,8 +231,8 @@ public class BeliPulsa extends AppCompatActivity {
 
     private JSONObject buidJsonObject() throws JSONException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.accumulate("no", 3636);
-        jsonObject.accumulate("pesan",  "BeliPulsa "+nominal.getSelectedItem().toString()+" Nomor "+nomor.getText().toString());
+        jsonObject.put("no", 3636);
+        jsonObject.put("pesan",  "BeliPulsa "+nominal.getSelectedItem().toString()+" Nomor "+nomor.getText().toString());
 
         return jsonObject;
     }
@@ -192,6 +247,42 @@ public class BeliPulsa extends AppCompatActivity {
         writer.close();
         os.close();
     }
+
+    public void daftarpasien(View view) {
+
+            progressDialog.setMessage("Loading ...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            refreshFlag = "1";
+            ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
+            Call<StatusResponse> postItem = api.postItem(id_trans.getText().toString(), provider.getSelectedItem().toString(),
+                    nominal.getSelectedItem().toString(), "50000", nomor.getText().toString());
+            postItem.enqueue(new Callback<StatusResponse>() {
+                @Override
+                public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
+                    progressDialog.dismiss();
+                    String status = response.body().getStatus();
+
+                    if (status.equals("success")) {
+                        Toast.makeText(BeliPulsa.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else if (status.equals("fail")){
+                        Toast.makeText(BeliPulsa.this, "Data gagal disimpan", Toast
+                                .LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(BeliPulsa.this, "Data gagal diasdasdsimpan", Toast
+                                .LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<StatusResponse> call, Throwable t) {
+
+                }
+            });
+        }
 
 
 
