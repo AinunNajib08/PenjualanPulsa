@@ -70,44 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    void getData(){
-// Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        String url = "https://dissentient-keyword.000webhostapp.com/Android/pegawai/tampilPgw.php?id=17";
-
-        JSONObject jsonBody = new JSONObject();
-        final String requestBody = jsonBody.toString();
-
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-//menaruh data JSON kkedalam variabel JSON Object
-                            JSONObject jsonPost = new JSONObject(response.toString());
-                            id_ui.setText(jsonPost.getString("id"));
-                            nomor_ui.setText(jsonPost.getString("name"));
-                            provider_ui.setText(jsonPost.getString("desg"));
-                            jumlah_ui.setText(jsonPost.getString("salary"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error Response",error.toString());
-            }
-        });
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-    }
-
     @Override
     protected void onDestroy() {
         // menghentikan server
