@@ -5,7 +5,11 @@
  */
 package hoaxcelldestop;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.io.IOException;
 import static java.lang.Math.random;
 import java.util.Random;
 import java.sql.Connection;
@@ -19,6 +23,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
 
 /**
  *
@@ -41,6 +49,25 @@ public class layoutHoax extends javax.swing.JFrame {
         tabelhistori.setModel(model);
         tampilkan();
     }
+    private void SendPesan(){
+        try {
+            JsonObject object = new JsonObject();
+            object.add("no", new JsonPrimitive("082234906072"));
+            object.add("pesan", new JsonPrimitive("pulsa anda terkirim"));
+            
+            Gson gson = new Gson();
+            String json = gson.toJson(object);
+            
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpPost post = new HttpPost("http://192.168.43.1:8000");
+            post.setEntity(new StringEntity(json));
+            httpClient.execute(post);
+        } catch (IOException ex) {
+            Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,7 +299,6 @@ public class layoutHoax extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         rand = new Random();
         int R = rand.nextInt(50);
-        SendSMSApp();
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
             koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"','"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
