@@ -169,7 +169,7 @@ public class login extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pulsa","root","");
             ResultSet as = con.createStatement().executeQuery("select * from saldo where username='"+textusername.getText()+"' and password ='"+String.valueOf(fieldpass.getText())+"' ");
             if(as.next()){
-                dasbord ad = new dasbord();
+                dashboard ad = new dashboard();
                 ad.setVisible(true);
                 dispose();
             } else {
