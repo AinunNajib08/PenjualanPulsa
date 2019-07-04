@@ -105,7 +105,6 @@ public class login extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancel");
 
-        fieldpass.setText("fieldpass");
         fieldpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldpassActionPerformed(evt);
@@ -155,7 +154,7 @@ public class login extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 650, 500);
+        jPanel1.setBounds(10, 0, 650, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
