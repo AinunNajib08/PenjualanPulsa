@@ -91,6 +91,7 @@ public class layoutHoax extends javax.swing.JFrame {
         textnotelp = new javax.swing.JTextField();
         textid = new javax.swing.JTextField();
         random = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -230,6 +231,11 @@ public class layoutHoax extends javax.swing.JFrame {
         });
         getContentPane().add(random);
         random.setBounds(270, 200, 40, 30);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Form Beli Pulsa");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(10, 110, 130, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Harga Jual");
@@ -386,6 +392,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
