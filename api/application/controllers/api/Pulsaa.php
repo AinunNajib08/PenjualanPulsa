@@ -6,7 +6,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Pulsa extends REST_Controller
+class Pulsaa extends REST_Controller
 {
 
     function __construct($config = 'rest')
@@ -18,11 +18,8 @@ class Pulsa extends REST_Controller
 
     function index_get()
     {
-        $this->db->select('*');
-        $this->db->from('detail_trans');
-        $this->db->order_by('id', 'DESC');
-        $this->db->limit(1, 'id');
-        $query = $this->db->get()->result();
+
+        $query = $this->db->get('detail_trans')->result();
         $this->response(array("result" => $query, 200));
     }
 

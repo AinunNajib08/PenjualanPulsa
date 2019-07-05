@@ -9,10 +9,10 @@
     </string-array>
 
     <string-array name="nominal">
-        <item>Rp. 5.000</item>
-        <item>Rp. 10.000</item>
-        <item>Rp. 15.000</item>
-        <item>Rp. 20.000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>20000</item>
     </string-array>
 </resources>
 

@@ -1,7 +1,7 @@
-package com.najib.clientandroid.Rest;
+package com.najib.data.Rest;
 
-import com.najib.clientandroid.model.GetPulsa;
-import com.najib.clientandroid.model.PostPutDelPulsa;
+import com.najib.data.Model.GetPulsa;
+import com.najib.data.Model.PostPutDelPulsa;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,9 +15,6 @@ public interface ApiInterface {
 
     @GET("pulsa")
     Call<GetPulsa> getPulsa();
-
-    @GET("pulsaa")
-    Call<GetPulsa> getPulsaa();
     @FormUrlEncoded
     @POST("Pulsa")
     Call<PostPutDelPulsa> postPulsa(@Field("nama") String nama,

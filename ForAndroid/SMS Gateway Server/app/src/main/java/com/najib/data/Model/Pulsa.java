@@ -1,8 +1,10 @@
-package com.najib.clientandroid.model;
+package com.najib.data.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PulsaData {
+public class Pulsa {
+    @SerializedName("id")
+    private String id;
     @SerializedName("id_transaksi")
     private String id_transaksi;
     @SerializedName("operator")
@@ -14,14 +16,41 @@ public class PulsaData {
     @SerializedName("no_tujuan")
     private String no_tujuan;
 
-    public PulsaData(){}
+    public String getNo_tujuan() {
+        return no_tujuan;
+    }
 
-    public PulsaData(String id_transaksi, String operator, String nominal, String harga_jual, String no_tujuan) {
-        this.id_transaksi = id_transaksi;
-        this.nominal = nominal;
-        this.operator = operator;
-        this.harga_jual = harga_jual;
+    public void setNo_tujuan(String no_tujuan) {
         this.no_tujuan = no_tujuan;
+    }
+
+    @SerializedName("status")
+    private String status;
+
+
+    public Pulsa(){
+
+    }
+
+    public Pulsa(String no_tujuan) {
+        this.no_tujuan = no_tujuan;
+    }
+
+    public Pulsa(String id, String id_transaksi, String operator, String nominal, String harga_jual, String status) {
+        this.id = id;
+        this.id_transaksi = id_transaksi;
+        this.operator = operator;
+        this.nominal = nominal;
+        this.harga_jual = harga_jual;
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId_transaksi() {
@@ -56,11 +85,11 @@ public class PulsaData {
         this.harga_jual = harga_jual;
     }
 
-    public String getNo_tujuan() {
-        return no_tujuan;
+    public String getStatus() {
+        return status;
     }
 
-    public void setNo_tujuan(String no_tujuan) {
-        this.no_tujuan = no_tujuan;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -133,13 +133,13 @@
         android:background="@drawable/edittext_design" />
 
     <Button
+        android:id="@+id/buttonBeli"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:text="Beli"
-        android:onClick="daftarpasien"
         android:background="@drawable/button"
         android:layout_width="200dp"
         android:layout_height="51dp" />

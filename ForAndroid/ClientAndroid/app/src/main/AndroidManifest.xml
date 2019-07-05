@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".CekActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".BeliPulsa" />
         <activity android:name=".Pembelian" />
         <activity android:name=".MainActivity">

@@ -11,14 +11,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.najib.clientandroid.Rest.ApiClient;
-import com.najib.clientandroid.Rest.ApiInterface;
+import com.najib.clientandroid.Rest.ApiRequest;
+import com.najib.clientandroid.Rest.Retroserver;
+import com.najib.clientandroid.Rest.response.StatusResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +33,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
 
@@ -42,7 +43,7 @@ import retrofit2.Response;
 public class BeliPulsa extends AppCompatActivity {
     ProgressDialog progressDialog;
     private String refreshFlag = "0";
-
+    Button buttonDaftar;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private TextView tvDateResult;
@@ -99,6 +100,7 @@ public class BeliPulsa extends AppCompatActivity {
         provider = (Spinner) findViewById(R.id.provider);
         nominal = (Spinner) findViewById(R.id.nominal);
         nomor = (EditText) findViewById(R.id.nomor);
+        buttonDaftar = findViewById(R.id.buttonBeli);
 
         id_trans.setText(""+n);
         progressDialog = new ProgressDialog(this);
@@ -115,56 +117,55 @@ public class BeliPulsa extends AppCompatActivity {
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         tvDateResult = (TextView) findViewById(R.id.date);
         tanggal = (EditText) findViewById(R.id.tanggal);
-
         tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog();
             }
         });
+
+        buttonDaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressDialog.setMessage("Loading ...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+
+                refreshFlag = "1";
+                send();
+                String id_transset = id_trans.getText().toString();
+                String operatorset = provider.getSelectedItem().toString();
+                String nominalset = nominal.getSelectedItem().toString();
+                String nomorset = nomor.getText().toString();
+
+                ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                Call<StatusResponse> postItem = api.postItem(id_transset, operatorset, nominalset, "6000", nomorset);
+                postItem.enqueue(new Callback<StatusResponse>() {
+                    @Override
+                    public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
+                        progressDialog.hide();
+                        String status = response.body().getStatus();
+
+                        if (status.equals("success")) {
+                            Toast.makeText(BeliPulsa.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(BeliPulsa.this, "Data gagal disimpan", Toast
+                                    .LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<StatusResponse> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
     }
 
-    private void addEmployee(){
-        final String trans = id_trans.getText().toString().trim();
-        final String no = nomor.getText().toString().trim();
-        final String prov = provider.getSelectedItem().toString().trim();
-        final String jum = nominal.getSelectedItem().toString().trim();
-
-        class AddEmployee extends AsyncTask<Void,Void,String> {
-
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(BeliPulsa.this,"Menambahkan...","Tunggu...",false,false);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(BeliPulsa.this,s, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Void... v) {
-                HashMap<String,String> params = new HashMap<>();
-                params.put(konfigurasi.KEY_EMP_ID_TRANS,trans);
-                params.put(konfigurasi.KEY_EMP_NOHP,no);
-                params.put(konfigurasi.KEY_EMP_PROVIDER,prov);
-                params.put(konfigurasi.KEY_EMP_JUMLAH,jum);
-
-
-                RequestHandler rh = new RequestHandler();
-                String res = rh.sendPostRequest(konfigurasi.URL_ADD, params);
-                return res;
-            }
-        }
-
-        AddEmployee ae = new AddEmployee();
-        ae.execute();
-    }
 
 
     private String httpPost(String myUrl) throws IOException, JSONException {
@@ -220,7 +221,7 @@ public class BeliPulsa extends AppCompatActivity {
     }
 
 
-    public void send(View view) {
+    public void send() {
         Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         if(checkNetworkConnection())
             new HTTPAsyncTask().execute("http://192.168.43.1:8000");
@@ -247,45 +248,4 @@ public class BeliPulsa extends AppCompatActivity {
         writer.close();
         os.close();
     }
-
-    public void daftarpasien(View view) {
-
-            progressDialog.setMessage("Loading ...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
-            refreshFlag = "1";
-            ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
-            Call<StatusResponse> postItem = api.postItem(id_trans.getText().toString(), provider.getSelectedItem().toString(),
-                    nominal.getSelectedItem().toString(), "50000", nomor.getText().toString());
-            postItem.enqueue(new Callback<StatusResponse>() {
-                @Override
-                public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
-                    progressDialog.dismiss();
-                    String status = response.body().getStatus();
-
-                    if (status.equals("success")) {
-                        Toast.makeText(BeliPulsa.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else if (status.equals("fail")){
-                        Toast.makeText(BeliPulsa.this, "Data gagal disimpan", Toast
-                                .LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(BeliPulsa.this, "Data gagal diasdasdsimpan", Toast
-                                .LENGTH_SHORT).show();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<StatusResponse> call, Throwable t) {
-
-                }
-            });
-        }
-
-
-
-
-
 }
