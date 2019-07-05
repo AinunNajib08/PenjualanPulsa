@@ -1,4 +1,4 @@
-package com.najib.clientandroid.Rest;
+package com.najib.data.Rest;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

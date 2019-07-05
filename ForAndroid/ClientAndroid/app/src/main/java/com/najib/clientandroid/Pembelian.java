@@ -17,4 +17,9 @@ public class Pembelian extends AppCompatActivity {
         Intent beli = new Intent(this, BeliPulsa.class);
         startActivity(beli);
     }
+
+    public void cekdat(View view) {
+        Intent beli = new Intent(this, CekActivity.class);
+        startActivity(beli);
+    }
 }

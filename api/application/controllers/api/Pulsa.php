@@ -18,23 +18,34 @@ class Pulsa extends REST_Controller
 
     function index_get()
     {
-        $id = $this->get('kode_tujuan');
-        if ($id == '') {
-            $tujuan_pelayanan = $this->db->get('tujuan_pelayanan')->result();
-        } else {
-            $this->db->where('kode_tujuan', $id);
-            $tujuan_pelayanan = $this->db->get('tujuan_pelayanan')->result();
-        }
-        $this->response($tujuan_pelayanan, 200);
+        $this->db->select('*');
+        $this->db->from('detail_trans');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1, 'id');
+        $query = $this->db->get()->result();
+        $this->response(array("result" => $query, 200));
     }
 
     function index_post()
     {
+        $nominal = $this->post('nominal');
+        $harga_jual = 0;
+
+        if ($nominal == 5000) {
+            $harga_jual = 6000;
+        } else if ($nominal == 10000) {
+            $harga_jual = 11000;
+        } else if ($nominal == 15000) {
+            $harga_jual == 160000;
+        } else {
+            $harga_jual == 210000;
+        }
         $data = array(
+
             'id_transaksi'           => $this->post('id_transaksi'),
             'operator'          => $this->post('operator'),
-            'nominal'    => $this->post('nominal'),
-            'harga_jual' => $this->post('harga_jual'),
+            'nominal'    => $nominal,
+            'harga_jual' => $harga_jual,
             'no_tujuan' => $this->post('no_tujuan'),
             'status' => "Berhasil"
         );
