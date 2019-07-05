@@ -6,7 +6,7 @@ class model_detailtransaksi extends CI_Model {
   
 
   public function view_by($pls){
-    $this->db->where('detail_transaksi', $pls);
+    $this->db->where('detail_trans', $pls);
     return $this->db->get('pulsa')->row();
   }
   
@@ -39,7 +39,7 @@ class model_detailtransaksi extends CI_Model {
       "no_tujuan" => $this->input->post('input_no_tujuan')
     );
     
-    $this->db->insert('detail_transaksi', $data); // Untuk mengeksekusi perintah insert data
+    $this->db->insert('detail_trans', $data); // Untuk mengeksekusi perintah insert data
   }
   
   public function edit($pls){
@@ -52,7 +52,7 @@ class model_detailtransaksi extends CI_Model {
     );
     
     $this->db->where('id', $pls);
-    $this->db->update('detail_transaksi', $data); // Untuk mengeksekusi perintah update data
+    $this->db->update('detail_trans', $data); // Untuk mengeksekusi perintah update data
   }
   
 
@@ -61,7 +61,7 @@ class model_detailtransaksi extends CI_Model {
     $this->db->delete('detail_transaksi'); // Untuk mengeksekusi perintah delete data
   }
   public function tampil_data_chained($id){
-	$query = $this->db->query("SELECT * FROM detail_transaksi, transaksi where transaksi.id_transaksi = detail_transaksi.id_transaksi ");
+	$query = $this->db->query("SELECT * FROM detail_trans, transaksi where transaksi.id_transaksi = detail_trans.id_transaksi ");
 	return $query;
 }
 

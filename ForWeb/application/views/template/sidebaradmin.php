@@ -20,8 +20,7 @@
             <!--Akhir sidebar coba-->
 
               <!-- Akhir User Panel-->
-              <a href="<?php echo base_url() ?>index.php/pembelian" class="list-group-item"><i class="fa fa-cart-plus"></i> Pembelian</a>
+              <a href="<?php echo base_url() ?>index.php/pembelian" class="list-group-item"><i class="fa fa-cart-plus"></i> Beli Pulsa</a>
               <a href="<?php echo base_url() ?>index.php/transaksi" class="list-group-item"><i class="fa fa-money"></i> Detail Transaksi</a>
-              <a href="<?php echo base_url() ?>index.php/biling" class="list-group-item active" style="text-align: center;background-color: blue;border-color: black" target="_blank" rel="nofollow" title="bilinguser">Form Pembeli</a>
             </div>
         </div>

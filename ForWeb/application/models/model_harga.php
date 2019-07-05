@@ -33,7 +33,7 @@ class model_harga extends CI_Model {
       "harga_jual" => $this->input->post('input_harga_jual')
     );
     
-    $this->db->insert('detail_transaksi', $data); // Untuk mengeksekusi perintah insert data
+    $this->db->insert('detail_trans', $data); // Untuk mengeksekusi perintah insert data
   }
   
   public function edit($hrg){

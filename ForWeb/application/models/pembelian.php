@@ -22,7 +22,7 @@ class Pembelian extends CI_Controller {
                 "harga_jual"     => $this->input->post('input_harga_jual'),
                 "no_tujuan"      => $this->input->post('input_no_tujuan')
                  );
-                 $this->db->insert('detail_transaksi',$data);
+                 $this->db->insert('detail_trans',$data);
                  redirect('index.php/pembelian');
         } else {
             $this->load->view('pembelian/form_pembelian');
@@ -32,7 +32,7 @@ class Pembelian extends CI_Controller {
     public function cancel() {
         $id= $this->uri->segment(3);
         $this->db->where('id',$id);
-        $this->db->delete('detail_transaksi');
+        $this->db->delete('detail_trans');
         redirect('index.php/pembelian');
     }
     public function pembelian() {

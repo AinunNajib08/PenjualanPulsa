@@ -13,7 +13,7 @@ class model_detailharga extends CI_Model
 	}
 
 	function get(){
-		$query = $this->db->query('SELECT * FROM detail_transaksi');
+		$query = $this->db->query('SELECT * FROM detail_trans');
         return $query->result();
 	}
 }
