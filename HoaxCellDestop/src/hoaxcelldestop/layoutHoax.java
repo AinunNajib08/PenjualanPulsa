@@ -52,7 +52,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private void SendPesan(){
         try {
             JsonObject object = new JsonObject();
-            object.add("no", new JsonPrimitive("082234906072"));
+            object.add("no", new JsonPrimitive("085230737515"));
             object.add("pesan", new JsonPrimitive("pulsa anda terkirim"));
             
             Gson gson = new Gson();
@@ -291,6 +291,7 @@ public class layoutHoax extends javax.swing.JFrame {
 
     private void tabelhistoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelhistoriMouseClicked
         int a = tabelhistori.getSelectedRow();
+        
         if (a > -1){
             textid.setText(model.getValueAt(a, 0).toString());
             inputoperator.setSelectedItem(model.getValueAt(a, 1).toString());
@@ -305,6 +306,7 @@ public class layoutHoax extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         rand = new Random();
         int R = rand.nextInt(50);
+        SendPesan();
         try {
             Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
             koneksi.createStatement().executeUpdate("INSERT INTO detail_transaksi (id, id_transaksi, operator, nominal, harga_jual, no_telepon) VALUES ('"+textid1.getText()+"','"+textid.getText()+"','"+inputoperator.getSelectedItem()+"','"+inputnominal.getSelectedItem()+"','"+texthargajual.getText()+"','"+textnotelp.getText()+"')");
@@ -314,6 +316,7 @@ public class layoutHoax extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(layoutHoax.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_tambahActionPerformed
 
     private void tanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalPropertyChange

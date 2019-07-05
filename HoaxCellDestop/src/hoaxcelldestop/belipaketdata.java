@@ -5,17 +5,31 @@
  */
 package hoaxcelldestop;
 
+import static com.sun.webkit.perf.WCFontPerfLogger.reset;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
  */
 public class belipaketdata extends javax.swing.JFrame {
+    DefaultTableModel model;
 
     /**
      * Creates new form belipaketdata
      */
     public belipaketdata() {
         initComponents();
+        String [] field = {"id","nama_operator", "kuota_paketan", "harga", "status", "no_tujuan"};
+        model = new DefaultTableModel(field, 0);
+        
     }
 
     /**
@@ -27,63 +41,50 @@ public class belipaketdata extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        nomor = new javax.swing.JTextField();
+        harga = new javax.swing.JTextField();
+        status = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        combobox2 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combobox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nama Operator", "Kuota Paket", "Harga", "Status", "no_tujuan"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        nomor.setToolTipText("");
+        getContentPane().add(nomor);
+        nomor.setBounds(190, 410, 190, 40);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(430, 160, 590, 100);
-
-        jTextField2.setToolTipText("");
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(190, 410, 190, 40);
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                hargaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(190, 290, 190, 40);
+        getContentPane().add(harga);
+        harga.setBounds(190, 290, 190, 40);
 
-        jTextField3.setToolTipText("");
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(190, 350, 190, 40);
+        status.setToolTipText("");
+        getContentPane().add(status);
+        status.setBounds(190, 350, 190, 40);
 
         jButton1.setBackground(new java.awt.Color(0, 204, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Kirim");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(200, 490, 130, 40);
 
@@ -102,10 +103,10 @@ public class belipaketdata extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(20, 290, 140, 40);
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 GB", "5 GB", "10 GB", "15 GB", "30 GB", "50 GB" }));
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(190, 230, 70, 40);
+        combobox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        combobox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 GB", "5 GB", "10 GB", "15 GB", "30 GB", "50 GB" }));
+        getContentPane().add(combobox2);
+        combobox2.setBounds(190, 230, 70, 40);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Kuota Paket");
@@ -136,10 +137,10 @@ public class belipaketdata extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 1030, 100);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(190, 160, 130, 40);
+        combobox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        combobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telkomsel", "Indosat", "XL", "Axis", "Tri", "Smartfren" }));
+        getContentPane().add(combobox1);
+        combobox1.setBounds(190, 160, 130, 40);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hoaxcelldestop/gambar1.jpg"))); // NOI18N
         jLabel4.setText("Id");
@@ -149,9 +150,20 @@ public class belipaketdata extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_hargaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
+            koneksi.createStatement().executeUpdate("INSERT INTO paketan (nama_operator, kuota_paketan, harga, status, no_tujuan) VALUES ('"+combobox1.getSelectedItem()+"','"+combobox2.getSelectedItem()+"','"+harga.getText()+"','"+status.getText()+"','"+nomor.getText()+"')");        
+                            reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(belipaketdata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,9 +201,10 @@ public class belipaketdata extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combobox1;
+    private javax.swing.JComboBox<String> combobox2;
+    private javax.swing.JTextField harga;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -202,10 +215,8 @@ public class belipaketdata extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nomor;
+    private javax.swing.JTextField status;
     // End of variables declaration//GEN-END:variables
+
 }
